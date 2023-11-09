@@ -185,6 +185,8 @@ label {
   margin-bottom: -4px;
 }
 
+
+
 /* Default style to buttons*/
 .button {
   padding: 6px 12px;
@@ -203,6 +205,130 @@ label {
   border: 2px solid var(--secondary-bgc);
   background-color: var(--header);
 }
+
+/* Back arrow link to home page */
+.arrow-wrapper{
+  align-self: flex-start;
+}
+
+.back-arrow {
+  width: 30px; 
+}
+
+/* Push the header up closer to the back arrow link*/
+.game-header {
+  margin-top: -18px;
+}
+
+/* Wrapper for game image (Squirrel)*/
+.game-image-wrapper {
+    display: grid;
+    width: 100%;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template-columns: repeat(7, 1fr);
+    background-image: url(../images/main-img.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    aspect-ratio: .95;
+    justify-content:center;
+    align-items: center;
+}
+
+/* Wrapper for message bubble that will be display with JS*/
+.bubble-bg-img {
+  grid-area: 1/ 2/6/7;
+  display: grid;
+  grid-template-rows: repeat(7, 1fr);
+  grid-template-columns: repeat(11, 1fr);
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  background-image: url(../images/bubble-mobile.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  opacity: 0.8;
+  aspect-ratio: 3/2;
+}
+
+/* Placement of bubble message in game image*/
+.bubble-message {
+  grid-area: 3/4/4/10;
+  text-align: center;
+  padding: 0;
+}
+
+/* Scoreboard */
+.game-scoreboard {
+  grid-area: 2/1/2/4;
+  display: flex;
+  flex-direction: column;
+  border: 4px solid var(--header);
+  border-radius: 10px;
+  background-color: rgba(238, 227, 203, 0.7);
+}
+
+.score-board-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.game-scoreboard {
+  width: 100%;
+  height: auto;
+  order: 1;
+}
+
+.game-scoreboard h3{
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.total-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.totals {
+  display: flex;
+  
+}
+
+.totals > h4, p {
+  text-align: center;
+  font-size: 1.25rem;
+  padding-top: 6px;
+}
+
+ .totals > p {
+  padding-left: 6px;
+ }
+
+ .acron-list-wrapper {
+  width: 90%;
+  margin: 30px auto;
+  border-top: 2px solid var(--header);
+ }
+
+/* Acorn image list */
+ ul {
+  align-self: flex-start;
+  margin-top: 10px;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+ }
+
+ /* Wrapper for button section dynamicly display in JS*/
+ .game-button-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
 
 /* Footer containes social links and an extra back arrow*/
 #footer-container {
