@@ -1,3 +1,6 @@
+// Global Variables
+const totalMathProblems = document.getElementById('totalInput');
+const remainingQuestions = document.getElementById('remainingQuestionNum');
 // starting game values
 let gameValues = {
   playerName: '',
@@ -50,7 +53,7 @@ function storeToLocalStorage(){
 }
 
 /** 
- * IIFE: Handles/modifies players name: chapitalizes first letter and store in localstorage.
+ * Handles/modifies players name: chapitalizes first letter and store in localstorage.
  * Displays name on home page in Instructions section.
  * */ 
 function handleNameInput(){
@@ -65,7 +68,6 @@ function handleNameInput(){
     storeToLocalStorage()
   }
 };
-
 handleNameInput();
 
 /** Handels challenge input amount and store to localStorage */
@@ -88,8 +90,7 @@ document.addEventListener('DOMContentLoaded', function() {
   checkAnsButton && resetButton ? resetButton.insertAdjacentElement('beforebegin', checkAnsButton) : null;
   for (let button of buttons) {
     button.addEventListener('click', function() {
-      if(this.getAttribute('data-type') === 'submit-game-values'){
-        formSubmit()
+      if(this.getAttribute('data-type') === 'submit-game-values'){  
       }else{
         throw `Error! Check that you have enter name and challenge amount.`
       }
@@ -104,6 +105,8 @@ document.addEventListener('DOMContentLoaded', function() {
 function formSubmit(event) {
   event.preventDefault()
   location.href = "game.html";
+  displayStartingInfo();
+  
 };
 
 
@@ -119,13 +122,11 @@ function generateMathProblem() {
   const valOne = Math.floor(Math.random() * 12) + 1;
   const valTwo = Math.floor(Math.random() * 12) + 1;
   let equation;
-
   if (valOne < valTwo && (operator === '/' ||'-')) {
     equation = ` ${valTwo} ${operator} ${valOne} `;
   } else {
     equation = `${valOne} ${operator} ${valTwo}`;
   }
-
   // Evaluate the equation and check for a floating-point result
   const result = eval(equation);
 
@@ -136,10 +137,8 @@ function generateMathProblem() {
 
   return {equation, result};
 }
-
 // Obj to handel and update value from generateMathProblem enable to display new math problem.
-const details = { equation: undefined, result: undefined };
-
+const details = { equation: undefined, result: undefined}
 /** Helper function that can take in more than one element using the spread operator to remove HTML element*/
 function removeElement  (...element) {
   // Loop through element parameter(s) uses spread operator if there is more than one element
@@ -148,21 +147,70 @@ function removeElement  (...element) {
   });
   };
 
+/** Helper function that can take in more than one element using the spread operator to remove HTML element*/
+function removeElement  (...element) {
+  // Loops through ...element parameter using spread operator for mulitple elements
+  element.forEach(element => {
+    element.style.display = 'none'
+  });
+};
+
 /** Helper function that can take in more than one element using the spread operator to add HTML element*/
 function addElement  (...element) {
-  // Will loop through if there is more than one element added to the function parameter
+   // Loops through ...element parameter using spread operator for mulitple elements
   element.forEach(element => {
     element.style.display = 'block'
-  });
-  };
+  })
+  } 
 
 /** Inserts starting gameValues to game page and inital math problem. */
 function displayStartingInfo() {
-    removeElement(totalMathProblems)
+  if(gameValues.remainingMathQuestion >= 5) {
     Object.assign(details,  generateMathProblem());
-    document.getElementById('mathQuestion').innerHTML = `${details.equation} = `;
+    document.getElementById('mathQuestion').textContent = `${ details.equation} = `;
     console.log(details.equation +  ' = ' + details.result)
-    document.getElementById('remainingQuestionNum').innerText = gameValues.remainingMathQuestion;
-    document.getElementById('message').innerText = gameMessage.startGameMsg;
-    storeToLocalStorage();
+    remainingQuestions.innerText = gameValues.remainingMathQuestion;
+    document.getElementById('message').textContent = gameMessage.startGameMsg;
+    console.log(remainingQuestions)
+  }else {
+    console.log('error')
+  }
 };
+
+/** Displays new math question when answered correctly
+ *  and updates the displays a new math question.
+ * */
+function displayNewQuestion() {
+  const numberOfAcorns = gameValues.collectedAcorn.length;
+  const gameSubMessage = document.getElementById('gameSubMessage');
+  const mathQuestion = document.getElementById('mathQuestion')
+    if (gameValues.answeredQuestion < gameValues.startingValue) {
+      Object.assign(details,  generateMathProblem());
+      mathQuestion.innerHTML = `${details.equation} = `;
+      playerInput.value = '';
+      playerInput.focus();
+      console.log(details.equation +  ' = ' + details.result)
+    } else {
+      removeElement(playerInput, mathQuestion, resetButton, checkAnsButton)
+      questionRemainingText.textContent = 0;
+      gameValues.startingValue = 0;
+      gameValues.answeredQuestion = 0;
+      gameSubMessage.innerText = gameMessage.endGameMsg;
+      message.textContent = `Great job! You collected ${numberOfAcorns} acorns.`;
+      setTimeout(() => {
+          const playButton = document.getElementById('playButton');
+          removeElement(checkAnsButton);
+          addElement(resetButton, playButton, totalMathProblems);
+          resetButton.insertAdjacentElement('beforebegin', playButton);
+          numberOfAcorns > 0 ? gameSubMessage.innerText = `Enter new challange and press, Play!`: undefined; 
+          totalMathProblems.value = ''
+          gameValues.startingValue = 0;
+          gameValues.answeredQuestion = 0;
+      }, 3000);
+    }
+}
+
+function reset() {
+  location.href = 'index.html';
+  localStorage.clear()
+}
