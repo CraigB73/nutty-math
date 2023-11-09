@@ -27,13 +27,15 @@ const gameMessage = {
   }
 }
 
-/** Generates random message from and attaches aria-label for displayed message */
+/** Generates random message from and attaches aria-label for displayed message: 
+ * used to display message for correct and wrong answer*/
 function randomMsg(newMessage) {
+  const message = document.getElementById('message');
   const correctMessages = Object.values(newMessage);
   const randomMessageIndex = Math.floor(Math.random() * correctMessages.length);
   const randMessage = correctMessages[randomMessageIndex]
   message.textContent = randMessage;
-  message.setAttribute('aria-label', randMessage)
+  message.setAttribute('aria-label', randMessage);
 }
 
  /** Get stored gameValues{} stored in local storage */
@@ -80,6 +82,8 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log(gameValues);
   let buttons = document.getElementsByTagName('button');
   const checkAnsButton = document.getElementById('checkAnswerButton');
+  const playButton = document.getElementById('playButton');
+  const resetButton = document.getElementById('resetButton');
   playButton ? playButton.style.display = 'none' :  null // Check if playButton is loaded.
   checkAnsButton && resetButton ? resetButton.insertAdjacentElement('beforebegin', checkAnsButton) : null;
   for (let button of buttons) {
@@ -153,11 +157,12 @@ function addElement  (...element) {
   };
 
 /** Inserts starting gameValues to game page and inital math problem. */
-function displayStartVal() {
+function displayStartingInfo() {
     removeElement(totalMathProblems)
     Object.assign(details,  generateMathProblem());
-    displayMathQuestion.innerHTML = `${details.equation} = `;
+    document.getElementById('mathQuestion').innerHTML = `${details.equation} = `;
     console.log(details.equation +  ' = ' + details.result)
-    questionRemainingText.innerText = gameValues.remainingMathQuestion;
+    document.getElementById('remainingQuestionNum').innerText = gameValues.remainingMathQuestion;
+    document.getElementById('message').innerText = gameMessage.startGameMsg;
     storeToLocalStorage();
 };
