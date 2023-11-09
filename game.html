@@ -33,29 +33,64 @@
     </header>
 
     <main class="outline-game game-main-container">
+      <div class="game-wrapper">
+        <div class="game-image-wrapper" aria-label="Picture of a cartoon squirrel holding an acorn by a blue stream">
+          <div class="bubble-bg-img message-wrapper">
+            <h3 id="message" class="bubble-message"></h3><!--Aria-label applied with js as message changes-->
+          </div>
+        </div>
+        <div id="scoreBoard" class="game-scoreboard">
+          <div>
+            <h3>Scoreboard</h3>
+          </div>
+          <div class="total-wrapper">
+            <div class="totals">
+              <h4>Questions remaining: </h4>
+              <p id="questionRemainingText">0</p>
+            </div>
+            <div class="acronlistWrapper">
+              <ul id="acornUlList"></ul>
+            </div>
+          </div>
+        </div>
+      </div>
 
-
+      <div class="player-input-container">
+        <div class="math-input">
+          <form class="player-input-wrapper">
+            <h3 id="mathQuestion" class="math-question"></h3>
+            <h4 id="gameSubMessage"></h4>
+            <input id="playerInput" class="player-input" placeholder="#" autocomplete="off" list="off" autofocus required>
+            <label for="playerInput"></label>
+            <button data-type="check-Answer-Submit" id="checkAnswerButton" class="button">Check Answer</button>
+          </form>
+          <form onsubmit="">
+            <div class="name-input-wrapper playagain-input">
+              <label for="totalInput" class="game-label amount-label"></label>
+              <input id="totalInput" name="totalInput" type="number" min="1" max="20" class="amount-input" placeholder="Number 5-20" required>
+            </div>
+            <button type="submit" data-type="new-game-value" id="playButton" class="button start-btn">Play</button>
+          </form>
+        </div>
+        <div id="button-container">
+          <button data-type="button" id="resetButton" class="button reset-btn">Home</button>
+        </div>
+      </div>
     </main>
   </div>
   <footer id="footer-container">
     <div class="social-icon-wrapper">
-      <a href="https://www.facebook.com/" target="_blank" rel="noopener"
-         aria-label="link to facebook">
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="link to facebook">
         <img class="svg-icon" src="./assets/images/social/facebook_icon.svg" alt="Facebook link">
       </a>
-      <a href="https://www.twitter.com/" target="_blank" rel="noopener"
-         aria-label="link to twitter">
+      <a href="https://www.twitter.com/" target="_blank" rel="noopener" aria-label="link to twitter">
         <img class="svg-icon" src="./assets/images/social/twitter_logo_icon.svg" alt="Twitter link">
       </a>
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener"
-         aria-label="link to instagram">
-        <img class="svg-icon" src="./assets/images/social/instagram-logo_icon.svg"
-             alt="Instagram link">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="link to instagram">
+        <img class="svg-icon" src="./assets/images/social/instagram-logo_icon.svg" alt="Instagram link">
       </a>
-      <a href="https://www.messenger.com/" target="_blank" rel="noopener"
-         aria-label="link to messenger">
-        <img class="svg-icon" src="./assets/images/social/messenger_logo_icon.svg"
-             alt="Messenger link">
+      <a href="https://www.messenger.com/" target="_blank" rel="noopener" aria-label="link to messenger">
+        <img class="svg-icon" src="./assets/images/social/messenger_logo_icon.svg" alt="Messenger link">
       </a>
     </div>
   </footer>
