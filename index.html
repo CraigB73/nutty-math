@@ -15,7 +15,7 @@
 </head>
 
 <body>
-  <div container home-container">
+  <div class="container home-container">
     <header class="outline header-container">
       <div class="h1-wrapper">
         <span class="h1-nutty">Nutty</span>
@@ -30,7 +30,7 @@
       <form class="form-wrapper-home" action="game.html" method="get" target="_self"
             onsubmit="formSubmit(event)">
         <div class="name-input-wrapper">
-          <label for="firstName" class="firstname-label">Say, Hi!</label>
+          <label for="firstName" class="home-label">Say, Hi!</label>
           <input id="firstName" name="first_name" type="text" class="name-input" type="text"
                  value="test" placeholder="Enter your name here:" onblur="handleNameInput()"
                  autofocus autocomplete="false" required>
@@ -41,7 +41,8 @@
                  class="number-input" placeholder="Number 5-20" autocomplete="false" required>
         </div>
         <div>
-          <button type="submit" id="playGameBtn" class="button goto-game-btn" value="Go To Game">Play
+          <button type="submit" id="playGameBtn" class="button goto-game-btn"
+                  value="Go To Game">Play
             Game</button>
         </div>
       </form>
@@ -71,11 +72,15 @@
          aria-label="link to twitter">
         <img class="svg-icon" src="./assets/images/social/twitter_logo_icon.svg" alt="Twitter link">
       </a>
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="link to instagram">
-        <img class="svg-icon" src="./assets/images/social/instagram-logo_icon.svg" alt="Instagram link">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener"
+         aria-label="link to instagram">
+        <img class="svg-icon" src="./assets/images/social/instagram-logo_icon.svg"
+             alt="Instagram link">
       </a>
-      <a href="https://www.messenger.com/" target="_blank" rel="noopener" aria-label="link to messenger">
-        <img class="svg-icon" src="./assets/images/social/messenger_logo_icon.svg" alt="Messenger link">
+      <a href="https://www.messenger.com/" target="_blank" rel="noopener"
+         aria-label="link to messenger">
+        <img class="svg-icon" src="./assets/images/social/messenger_logo_icon.svg"
+             alt="Messenger link">
       </a>
     </div>
   </footer>

@@ -95,10 +95,11 @@ span:first-child {
 .home-main-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space;
   align-items: center;
   margin: auto 0;
   padding: 1rem ;
+  gap: 16px;
 }
 
  /*  Name input */
@@ -116,9 +117,9 @@ span:first-child {
   margin-top: 8px;
 }
 
-label {
-  font-size: 2rem;
-}
+.home-label {
+    font-size: 1rem;
+ }
 
 .number-input{
   font-size: 1rem;
@@ -184,8 +185,6 @@ label {
   margin-right: 16px;
   margin-bottom: -4px;
 }
-
-
 
 /* Default style to buttons*/
 .button {
@@ -307,11 +306,6 @@ label {
   padding-left: 6px;
  }
 
- .acron-list-wrapper {
-  width: 90%;
-  margin: 30px auto;
-  border-top: 2px solid var(--header);
- }
 
 /* Acorn image list */
  ul {
@@ -320,7 +314,14 @@ label {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
+ } 
+ 
+ .acron-list-wrapper {
+  width: 90%;
+  margin: 30px auto;
+  border-top: 2px solid var(--header);
  }
+
 
  /* Wrapper for button section dynamicly display in JS*/
  .game-button-wrapper {
@@ -328,6 +329,68 @@ label {
   display: flex;
   justify-content: space-evenly;
 }
+
+/* Default display with DOMloaded */
+#newTotalInput,
+#playAgainButton,
+#replayButton, 
+.game-label{
+  display: none;
+}
+
+.player-input-container{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 4px;
+  gap: 4px;
+}
+
+/* Players wrapper for math question and palyer inout answer  */
+.math-input {
+  width: 100%;
+}
+
+.player-input-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 6px 12px;
+  border: 4px solid var(--header);
+  border-radius: 10px;
+  background-color: rgba(238, 227, 203, 0.9);
+}
+
+/* Math problem for user to enter answer */
+h3.math-question {
+  font-size: 2rem;
+}
+
+input {
+  width: 32px;
+  height: 32px;
+  margin-rigth: 20px;
+  text-align: center;
+}
+
+/* Player answer input*/
+#playerInput {
+  background: transparent;
+  border: transparent;
+  outline: none;
+  border-bottom: 2px solid var(--header);
+  margin-top: 4px;
+  width: 4rem;
+  margin-left: 4px;
+  font-size: 2rem;
+}
+
+.play-input:focus {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid var(--header);
+}
+
 
 
 /* Footer containes social links and an extra back arrow*/
@@ -375,9 +438,9 @@ body {
   font-size: 3rem;
 }
 
-.amount-label {
-  font-size: 2rem;
-}
+.home-label {
+    font-size: 1.25rem;
+ }
 
 .instruction-headers {
   font-size: 1.25rem;
@@ -423,11 +486,9 @@ body {
   width: 50vw;
  }
 
-
-
-.amount-label {
-  font-size: 2rem;
-}
+ .home-label {
+    font-size: 1.25rem;
+ }
 
  .goto-game-btn {
   font-size: 2rem;
@@ -480,8 +541,9 @@ body {
   font-size: 1.75rem;
 }
 
-
-
+.totals {
+  align-self: flex-start;
+}
 
 }
 
@@ -505,9 +567,9 @@ body {
   width: 40vw;
  }
 
-.amount-label {
-  font-size: 2rem;
-}
+.home-label {
+    font-size: 1.25rem;
+ }
 
 .goto-game-btn {
   font-size: 2rem;
@@ -557,6 +619,16 @@ body {
 .game-scoreboard h3 {
   font-size: 2.0rem;
 }
+
+.totals {
+  align-self: flex-start;
+}
+
+.totals > h4, p {
+  text-align: center;
+  font-size: 1rem;
+  padding-top: 6px;
+} 
 }
 
 /* Large screens: desktops*/
@@ -577,6 +649,10 @@ body {
 
 .form-wrapper-home{
   width: 35vw;
+ }
+
+.home-label {
+    font-size: 1.5rem;
  }
 
 .goto-game-btn {
@@ -633,6 +709,9 @@ body {
   font-size: 2.5rem;
 }
 
+.totals {
+  align-self: flex-start;
+}
 
 }
 
@@ -659,6 +738,10 @@ body {
   width: 35vw;
  }
 
+.home-label {
+    font-size: 1.75rem;
+ }
+ 
  .goto-game-btn {
   font-size: 2rem;
 }
@@ -718,6 +801,14 @@ body {
   display: flex;
   justify-content: space-between;
   padding-top:14px;
+}
+
+.totals>h4 p {
+  font-size: 2rem;
+}
+
+.totals {
+  align-self: flex-start;
 }
 
 }
