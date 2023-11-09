@@ -59,7 +59,6 @@ document.addEventListener('DOMContentLoaded', function() {
         formSubmit()
       }else{
         throw `Error! Check that you have enter name and challenge amount.`
-      
       }
     })
   };
@@ -72,7 +71,6 @@ document.addEventListener('DOMContentLoaded', function() {
 function formSubmit(event) {
   event.preventDefault()
   location.href = "game.html";
-  displayNewQuestion()
 };
 
 
@@ -80,3 +78,28 @@ function formSubmit(event) {
 // Assigns and distructure getFromLocalStorge function and checks truthy value
 let storedValues = getFromLocalStorage();
 storedValues ? (gameValues = storedValues) : gameValues;
+
+/** Creates random math equation  */
+function generateMathProblem() {
+  const operators = ['+', '-', '*', '/'];
+  const operator = operators[Math.floor(Math.random() * operators.length)];
+  const valOne = Math.floor(Math.random() * 12) + 1;
+  const valTwo = Math.floor(Math.random() * 12) + 1;
+  let equation;
+
+  if (valOne < valTwo && (operator === '/' ||'-')) {
+    equation = ` ${valTwo} ${operator} ${valOne} `;
+  } else {
+    equation = `${valOne} ${operator} ${valTwo}`;
+  }
+
+  // Evaluate the equation and check for a floating-point result
+  const result = eval(equation);
+
+  // Check if the result is a floating-point number with assistance of chatGPT: "(!Number.isInteger(result))"
+  if (!Number.isInteger(result)) {
+    return generateMathProblem();
+  }
+
+  return {equation, result};
+}
