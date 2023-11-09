@@ -183,3 +183,59 @@ label {
   margin-right: 16px;
   margin-bottom: -4px;
 }
+
+/* Default style to buttons*/
+.button {
+  padding: 6px 12px;
+  background-color: var(--secondary-bgc);
+  border-radius: 10px;
+  border-color: var(--header);
+}
+
+/* Home page play/submit button */
+.goto-game-btn {
+  width: 100%;
+  color: var( --secondary-bgc);
+  margin: 8px 0;
+  padding: 5px 20px;
+  font-size: 1.5rem;
+  border: 2px solid var(--secondary-bgc);
+  background-color: var(--header);
+}
+
+/* Footer containes social links and an extra back arrow*/
+#footer-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.social-icon-wrapper {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+
+  border-top: 2px solid var(--secondary-bgc);
+}
+
+ .social-icon-wrapper > a {
+  padding: 10px 15px;
+  width: 100%
+  text-decoration: none;
+
+ }
+
+ .svg-icon {
+  fill: var(--header);
+  background-color: var(--secondary-bgc);
+  border-radius: 8px;
+  transition: background 0.3s;
+ }
+
+.svg-icon:hover {
+  fill: var(--secondary-bgc) ;
+  background-color: var(--header);
+  opacity: 0.5;
+}
+
