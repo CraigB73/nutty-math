@@ -42,6 +42,7 @@ body {
   min-height: 90vh;
   gap: 16px;
 }
+
 /* Start of header text styling*/
 .header-container {
   display: flex;
@@ -100,7 +101,7 @@ span:first-child {
   padding: 1rem ;
 }
 
- /* Start of the name input home page */
+ /*  Name input */
  .form-wrapper-home{
   width: 60vw;
   display: flex;
@@ -119,7 +120,7 @@ label {
   font-size: 2rem;
 }
 
-.amount-label{
+.number-input{
   font-size: 1rem;
 }
 
@@ -132,7 +133,7 @@ label {
   background-color: rgba(238, 227, 203, 0.9);
 }
 
-  /* For the instruction wrapper home page */
+  /* Instruction wrapper home page */
 .instruction-wrapper {
   display: flex;
   flex-direction: column;
@@ -215,7 +216,6 @@ label {
   width: 60%;
   display: flex;
   justify-content: space-evenly;
-
   border-top: 2px solid var(--secondary-bgc);
 }
 
@@ -223,19 +223,236 @@ label {
   padding: 10px 15px;
   width: 100%
   text-decoration: none;
-
  }
 
  .svg-icon {
-  fill: var(--header);
   background-color: var(--secondary-bgc);
   border-radius: 8px;
   transition: background 0.3s;
  }
 
 .svg-icon:hover {
-  fill: var(--secondary-bgc) ;
-  background-color: var(--header);
+  background-color: red;
   opacity: 0.5;
 }
 
+/*Media Queries*/
+@media only screen  and (min-width: 1201px) and (max-width: 467px){
+body {
+  width: 100%;
+}
+}
+
+/* Small mobile */
+@media only screen  and (min-width: 320px) and (max-width: 467px){
+.h1-nutty, .h1-math {
+  font-size: 3rem;
+}
+
+.amount-label {
+  font-size: 2rem;
+}
+
+.instruction-headers {
+  font-size: 1.25rem;
+}
+
+.instruction-wrapper > p:last-child {
+  font-size: 1.5rem;
+}
+
+.form-wrapper-home{
+  width: 65vw;
+ }
+
+.goto-game-btn {
+  font-size: 2rem;
+}
+
+}
+
+/* Mobile iPads/tablets (468px - 768px) */
+@media only screen and (min-width: 468px) and (max-width: 768px){
+
+
+.container {
+  width: 90%;
+  min-height: 85vh;
+  margin: 0 auto;
+}
+
+.h1-wrapper {
+  height: 10vw;
+}
+
+.h1-nutty, .h1-math {
+  font-size: 3rem;
+}
+
+.form-wrapper-home{
+  width: 50vw;
+ }
+
+.amount-label {
+  font-size: 2rem;
+}
+
+ .goto-game-btn {
+  font-size: 2rem;
+}
+
+.instruction-wrapper {
+  max-width: 80vw;  
+  line-height: 22px;
+}
+
+.instruction-headers {
+  font-size: 1.5rem;
+}
+
+.instruction-wrapper P {
+  font-size: 1rem;
+}
+
+
+.instruction-wrapper > p:last-child {
+  font-size: 1.5rem;
+}
+}
+
+/* Small screens: laptops */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.h1-wrapper {
+  height: 5vw;
+}
+
+.h1-nutty, .h1-math {
+  font-size: 3.5rem;
+}
+
+.form-wrapper-home{
+  width: 40vw;
+ }
+
+.amount-label {
+  font-size: 2rem;
+}
+
+.goto-game-btn {
+  font-size: 2rem;
+}
+
+.instruction-wrapper {
+  max-width: 60vw;  
+  line-height: 24px;
+}
+
+.instruction-headers {
+  font-size: 1.5rem;
+}
+
+.instruction-wrapper P {
+  font-size: 1.25rem;
+}
+
+.instruction-wrapper > p:last-child {
+  font-size: 1.5rem;
+}
+}
+
+/* Large screens: desktops*/
+@media only screen and (min-width: 1025px) and (max-width: 1200px) {
+
+.container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.h1-wrapper {
+  height: 4.5vw;
+}
+
+ .h1-nutty, .h1-math {
+  font-size: 4rem;
+}
+
+.form-wrapper-home{
+  width: 35vw;
+ }
+
+.goto-game-btn {
+  font-size: 2rem;
+}
+
+.instruction-wrapper {
+  max-width: 60vw;  
+  line-height: 26px;
+}
+
+.instruction-headers {
+  font-size: 1.5rem;
+}
+
+.instruction-wrapper P {
+  font-size: 1.25rem;
+}
+
+.instruction-wrapper > p:last-child {
+  font-size: 1.5rem;
+}
+
+
+}
+
+/* Extra large screens above 1201px */
+ @media only screen and (min-width: 1201px) {
+.container {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.h1-container {
+  height: 5vw;
+}
+
+.h1-wrapper {
+  height: 5vw;
+}
+
+.h1-nutty, .h1-math {
+  font-size: 4rem;
+}
+
+.form-wrapper-home{
+  width: 35vw;
+ }
+
+ .goto-game-btn {
+  font-size: 2rem;
+}
+
+.instruction-wrapper {
+  max-width: 60vw;  
+  line-height: 26px;
+}
+
+.instruction-headers {
+  font-size: 2rem;
+}
+
+.instruction-wrapper P {
+  font-size: 1.25rem;
+}
+
+.instruction-wrapper > p:last-child {
+  font-size: 1.5rem;
+}
+
+
+}
