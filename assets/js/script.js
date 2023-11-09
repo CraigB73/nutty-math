@@ -7,6 +7,35 @@ let gameValues = {
   collectedAcorn: []
  }
 
+ // Messsage to be displayed the message bubble in the game page.
+const gameMessage = {
+  startGameMsg: 'Lets do this!',
+  endGameMsg: `You did great! Have another go.`,
+  playAgainMsg: 'Come on, let\'s play again!',
+  corrAnsMsg:{
+    cMsg1: 'Great, keep it up!',
+    cMsg2: 'You rock!',
+    cMsg3: 'You make it look easy!',
+    cMsg4: 'Great another acorn!',
+
+  },
+  wrongAnsMsg: {
+    wMsg1: 'You got this!',
+    wMsg2: 'Take a deep breath and try again.',
+    wMsg3: 'Take your time. Give it one more try.',
+    wMsg4: 'You\'re wrong this answer belongs to another math problem.',
+  }
+}
+
+/** Generates random message from and attaches aria-label for displayed message */
+function randomMsg(newMessage) {
+  const correctMessages = Object.values(newMessage);
+  const randomMessageIndex = Math.floor(Math.random() * correctMessages.length);
+  const randMessage = correctMessages[randomMessageIndex]
+  message.textContent = randMessage;
+  message.setAttribute('aria-label', randMessage)
+}
+
  /** Get stored gameValues{} stored in local storage */
 function getFromLocalStorage(){
   const storedValues = localStorage.getItem(gameValues);
@@ -130,6 +159,5 @@ function displayStartVal() {
     displayMathQuestion.innerHTML = `${details.equation} = `;
     console.log(details.equation +  ' = ' + details.result)
     questionRemainingText.innerText = gameValues.remainingMathQuestion;
-    message.innerText= gameMessage.startGameMsg;
     storeToLocalStorage();
 };
