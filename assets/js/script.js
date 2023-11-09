@@ -103,3 +103,33 @@ function generateMathProblem() {
 
   return {equation, result};
 }
+
+// Obj to handel and update value from generateMathProblem enable to display new math problem.
+const details = { equation: undefined, result: undefined };
+
+/** Helper function that can take in more than one element using the spread operator to remove HTML element*/
+function removeElement  (...element) {
+  // Loop through element parameter(s) uses spread operator if there is more than one element
+  element.forEach(element => {
+    element.style.display = 'none'
+  });
+  };
+
+/** Helper function that can take in more than one element using the spread operator to add HTML element*/
+function addElement  (...element) {
+  // Will loop through if there is more than one element added to the function parameter
+  element.forEach(element => {
+    element.style.display = 'block'
+  });
+  };
+
+/** Inserts starting gameValues to game page and inital math problem. */
+function displayStartVal() {
+    removeElement(totalMathProblems)
+    Object.assign(details,  generateMathProblem());
+    displayMathQuestion.innerHTML = `${details.equation} = `;
+    console.log(details.equation +  ' = ' + details.result)
+    questionRemainingText.innerText = gameValues.remainingMathQuestion;
+    message.innerText= gameMessage.startGameMsg;
+    storeToLocalStorage();
+};
