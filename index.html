@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,19 +13,59 @@
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
+
 <body>
   <div container home-container">
     <header class="outline header-container">
       <div class="h1-wrapper">
         <span class="h1-nutty">Nutty</span>
         <div class="header-img-wrapper">
-          <img class="header-img" src="./assets/images/nutty-right.png" alt="Cartoon squirrel holding an acorn">
+          <img class="header-img" src="./assets/images/nutty-right.png"
+               alt="Cartoon squirrel holding an acorn">
         </div>
         <span class="h1-math">Math</span>
       </div>
     </header>
+    <main class="outline home-main-container">
+      <form class="form-wrapper-home" action="game.html" method="get" target="_self"
+            onsubmit="formSubmit(event)">
+        <div class="name-input-wrapper">
+          <label for="firstName" class="firstname-label">Say, Hi!</label>
+          <input id="firstName" name="first_name" type="text" class="name-input" type="text"
+                 value="test" placeholder="Enter your name here:" onblur="handleNameInput()"
+                 autofocus autocomplete="false" required>
+        </div>
+        <div class="name-input-wrapper">
+          <label for="totalInput" class="home-label amount-label">Choose your challenge: </label>
+          <input id="totalInput" name="totalInput" type="number" min="1" max="20"
+                 class="amount-input" placeholder="Number 5-20"
+                 onblur="handleNumberInput(totalMathProblems)"
+                 onkeypress="handleNumberInput(totalMathProblems)" autocomplete="false" required>
+        </div>
+        <div>
+          <button type="submit" id="playGameBtn" class="button goto-game-btn"
+                  value="Go To Game">Play
+            Game</button>
+        </div>
+      </form>
+      <section class="instruction-wrapper">
+        <h2 class="instruction-headers">Instructions</h2>
+        <p>Hello<span class="first-name" id="fname"></span>, and welcome to Nutty Math.</p>
+        <p>It's not a challenge under five question so make sure to choose your challenge between
+          5-20 math questions.</p>
+        <p>Next, press the "Play Game" button and help Nutty race against the clock to gather acorns
+          and boost your math skills!</p>
+        <h2 class="instruction-headers">Object of the game</h2>
+        <p>Solve each math question, and for every correct answer, Nutty drops an acorn in your
+          basket. Don't worry about a time limit because you can't collect an acron unless you find
+          one. So to get an acorn you need to solve the math problem.
+        </p>
+        <p>Happy Gathering!</p>
+      </section>
+    </main>
   </div>
 
   <script src=" ./assets/js/script.js"></script>
 </body>
+
 </html>
