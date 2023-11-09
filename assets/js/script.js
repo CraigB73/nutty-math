@@ -198,6 +198,7 @@ function displayNewQuestion() {
       gameSubMessage.innerText = gameMessage.endGameMsg;
       message.textContent = `Great job! You collected ${numberOfAcorns} acorns.`;
       setTimeout(() => {
+          const resetButton = document.getElementById('resetButton')
           const playButton = document.getElementById('playButton');
           removeElement(checkAnsButton);
           addElement(resetButton, playButton, totalMathProblems);
@@ -209,6 +210,18 @@ function displayNewQuestion() {
       }, 3000);
     }
 }
+/** Create acorns image and returns a list of arcon images for every right answer input. */
+function addAcron() {
+  const acronImage = document.createElement('img');
+    acronImage.src = './assets/images/acorn.webp';
+    acronImage.style.width = '30px'
+    acronImage.ariaLabel = "Cartoon acorn";
+  const acornListItem  = document.createElement('li');
+  acornListItem.appendChild(acronImage);
+  gameValues.collectedAcorn.push(acornListItem)
+  return acornListItem;
+}
+
 
 function reset() {
   location.href = 'index.html';
