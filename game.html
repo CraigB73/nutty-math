@@ -69,16 +69,16 @@
           <form onsubmit="newGameformSubmit(event)">
             <div class="name-input-wrapper playagain-input">
               <label for="totalInput" class="game-label amount-label"></label>
-              <input id="totalInput" name="totalInput" type="number" min="5" max="20"
+              <input id="totalInput" name="totalInput" type="number" min="1" max="20"
                      class="amount-input" placeholder="Number 5-20"
                      onkeyup="handleNumberInput(totalMathProblems)"
                      onblur="handleNumberInput(totalMathProblems)" required>
             </div>
-            <button type="submit" data-type="play-button" id="playButton" onclick="newGame()"
+            <button type="submit" data-type="play-button" id="playButton"
                     class="button start-btn">Play</button>
           </form>
         </div>
-        <div id="game-button-wrapper">
+        <div class="game-button-wrapper">
           <button data-type="button" onclick="reset()" id="resetButton"
                   class="button reset-btn">Home</button>
         </div>

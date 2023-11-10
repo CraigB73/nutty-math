@@ -39,7 +39,7 @@ const gameMessage = {
   }
 }
 
-/** Generates random message from and attaches aria-label for displayed message: 
+/** Generates random message from and attaches aria-label for displayed message:
  * used to display message for correct and wrong answer*/
 function randomMsg(newMessage) {
   const correctMessages = Object.values(newMessage);
@@ -85,20 +85,23 @@ document.addEventListener('DOMContentLoaded', function() {
     button.addEventListener('click', function() {
       if(this.getAttribute('data-type') === 'check-Answer-Submit'){
         checkAnswer()
-      }
-      if(this.getAttribute('data-type') === 'new-game-value'){
-        removeElement(playButton, gameSubMessage, totalMathProblems)
-        addElement(displayMathQuestion, playerInput, checkAnsButton, resetButton)
-        resetButton.insertAdjacentElement('beforebegin', checkAnsButton)
-      }
+      }else {
+        displayNewQuestion()
+      }     
     })
-  }
+  } 
+  document.getElementById('playButton').addEventListener('click', () => {
+    removeElement(playButton, gameSubMessage, totalMathProblems);
+    addElement(displayMathQuestion, playerInput, checkAnsButton, resetButton);
+    resetButton.insertAdjacentElement('beforebegin', checkAnsButton);
+    newGame()
+  })
 })
 
-/** 
+/**
  * Handles/modifies players name: chapitalizes first letter and store in localstorage.
  * Displays name on home page in Instructions section.
- * */ 
+ * */
  function handleNameInput(){
   const nameInput = document.getElementById('firstName');
   if(nameInput){
@@ -160,14 +163,14 @@ function removeElement  (...element) {
   element.forEach(element => {
     element.style.display = 'none'
   })
-  } 
+  }
 
 /** Helper function that can take in more than one element using the spread operator to add HTML element*/
 function addElement  (...element) {
   element.forEach(element => {
     element.style.display = 'block'
   })
-  } 
+  }
 
 
 
@@ -183,9 +186,11 @@ function displayStartVal() {
 }
 
 function newGame() {
-  addElement(totalMathProblems);
+  removeElement(playButton, gameSubMessage, totalMathProblems);
+  addElement(displayMathQuestion, playerInput, checkAnsButton, resetButton);
   displayNewQuestion()
   storeToLocalStorage()
+  resetButton.insertAdjacentElement('beforebegin', checkAnsButton);
   questionRemainingText.innerText = gameValues.remainingMathQuestion;
   console.log('newGame', gameValues);
   playerInput.value = '';
@@ -214,7 +219,7 @@ function displayNewQuestion() {
           removeElement(checkAnsButton);
           addElement(resetButton, playButton, totalMathProblems);
           resetButton.insertAdjacentElement('beforebegin', playButton);
-          numberOfAcorns > 0 ? gameSubMessage.innerText = `Enter new challange and press, Play!`: undefined; 
+          gameSubMessage.innerText = `Enter new challange and press, Play!`;
           totalMathProblems.value = ''
           gameValues.startingValue = 0;
           gameValues.answeredQuestion = 0;
@@ -234,7 +239,6 @@ function addAcorn() {
   return acornListItem;
 }
 
-
 /** Evaluates player input check if answer is correc, updates message
  *  from Nutty depending on the correctness of playerInput, and adds an acorn.
  * */
@@ -245,6 +249,7 @@ function checkAnswer() {
   const questionRemainingText = document.getElementById('questionRemainingText');
   const correctMsg = gameMessage.corrAnsMsg;
   const wrongMsg = gameMessage.wrongAnsMsg;
+
   if(playerInput.value == details.result && gameValues.remainingMathQuestion){
     gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
     gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
@@ -259,8 +264,11 @@ function checkAnswer() {
     console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
   }else {
     setTimeout(() => {
-      message.textContent = `You must enter the right answer to move on. Here's a hint (${hint} + ${hint})`
+      message.textContent = `You need a right answer to move on.`
     }, 3000);
+    setTimeout(() => {
+      message.textContent = ` Here's a hint (${hint} + ${hint})`
+    }, 5000);
     randomMsg(wrongMsg);
     playerInput.value = '';
   }
