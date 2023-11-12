@@ -11,7 +11,7 @@
    1. [Description](#description)
    2. [Table of Content](#table-of-content)
    3. [Features](#features)
-   4. [Color Reference](#color-reference)
+   4. [Design and Color Reference](#design-and-color-reference)
    5. [🛠 Tech Stack](#%F0%9F%9B%A0-tech-stack)
    6. [Libraries](#libraries)
    7. [Testing](#testing)
@@ -33,14 +33,17 @@ The gamepage is where you start you challenge and bulid on you math skills. On t
 ![Alt text](<Screenshot 2023-11-12 at 20.24.39.png>)
 Once you completed you challenge you will be asked to play again. At anytime you can press the "Home" button whick will take you back to the "Homepage" and reset the game.
 1. Footer
- ![Alt text](<Screenshot 2023-11-12 at 20.26.24.png>)
+![Alt text](<Screenshot 2023-11-12 at 21.17.19.png>)
  Mock social links as placeholders to be created for players access and share their success.
 
+- Social Media:
+  - [Facebook](https://www.facebook.com)
+  - [X](https://www.x.com)
+  - [Instagram](https://www.instagram.com)
+  - [Messenger](https://www.messenger.com)
 
-
-
-## Color Reference
-
+## Design and Color Reference
+ [Figma]()
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
 | Linear-gradient | ![#3f9cba](https://via.placeholder.com/10/3f9cba?text=+) #3f9cba ![#b6e8e9](https://via.placeholder.com/10/b6e8e9?text=+) #b6e8e9|
@@ -55,7 +58,7 @@ Once you completed you challenge you will be asked to play again. At anytime you
 
 ## Libraries
  - Font Awesome: Used in the footer and thumbnail icons
-- Google Fonts:
+- Google Fonts
 - GitHub: Use to store the project and deploy using GitHub' "Pages"
 
 ## Testing
@@ -75,6 +78,7 @@ Once you completed you challenge you will be asked to play again. At anytime you
 - W3C Validator for HTML and CSS
 
 ## Bugs
+- ChatGBT(https://chat.openai.com/):  
 
 ## Deployment 
 - Deployment was performed using GitHub pages.
@@ -85,5 +89,6 @@ Gamepage Squirrel Image:  https://www.midjourney.com/home
 Mock Responsiveness: https://ui.dev/amiresponsive
 
 ## Credits and Acknowledgements
-Creation of tech stack badges: https://dev.to/envoy_/150-badges-for-github-pnk
+- Creation of tech stack badges: https://dev.to/envoy_/150-badges-for-github-pnk
 https://www.iconfinder.com
+- Content creation: https://chat.openai.com/

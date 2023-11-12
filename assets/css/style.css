@@ -210,7 +210,8 @@ span:first-child {
 }
 
 /* Back arrow link to home page */
-.arrow-wrapper{
+.arrow-wrapper {
+  display: inline-flex;
   align-self: flex-start;
 }
 
