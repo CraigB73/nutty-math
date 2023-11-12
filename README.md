@@ -43,7 +43,8 @@ Once you completed you challenge you will be asked to play again. At anytime you
   - [Messenger](https://www.messenger.com)
 
 ## Design and Color Reference
- [Figma]()
+ Design link created in: [Figma](https://www.figma.com/file/uzQhUBLFXZnp77fvHifUTR/nutty_math?type=design&node-id=1%3A94&mode=design&t=ADPiRRybJDRygtgZ-1)
+
 | Color             | Hex                                                                |
 | ----------------- | ------------------------------------------------------------------ |
 | Linear-gradient | ![#3f9cba](https://via.placeholder.com/10/3f9cba?text=+) #3f9cba ![#b6e8e9](https://via.placeholder.com/10/b6e8e9?text=+) #b6e8e9|
@@ -78,7 +79,15 @@ Once you completed you challenge you will be asked to play again. At anytime you
 - W3C Validator for HTML and CSS
 
 ## Bugs
-- ChatGBT(https://chat.openai.com/):  
+- ChatGBT(https://chat.openai.com/): 
+  ```
+   // Check if the result is a floating-point number within the function: 
+   function generateMathProblem()  {
+      if (!Number.isInteger(result)) {
+        return generateMathProblem();
+        }
+    }
+    ```
 
 ## Deployment 
 - Deployment was performed using GitHub pages.
