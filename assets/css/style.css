@@ -438,8 +438,14 @@ input {
   transition: background 0.3s;
  }
 
+ /* Needs own backgound */
+ .x-icon {
+  background-color: var(--header);
+ }
+
 .svg-icon:hover {
-  background-color: red;
+  height: 45px;
+  background: white;
   opacity: 0.5;
 }
 
