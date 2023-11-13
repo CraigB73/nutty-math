@@ -34,19 +34,21 @@ const gameMessage = {
   wrongAnsMsg: {
     wMsg1: 'You got this!',
     wMsg2: 'Take a deep breath and try again.',
-    wMsg3: 'Take your time. Give it one more try.',
-    wMsg4: 'You\'re wrong this answer belongs to another math problem.',
+    wMsg3: 'Take your time and give it one more try.',
+    wMsg4: 'Good try! Give it another go.',
   }
 }
 
-/** Generates random message from and attaches aria-label for displayed message:
- * used to display message for correct and wrong answer*/
+
+/** 
+ * Generates random message used to display message for correct and wrong answer
+*/
 function randomMsg(newMessage) {
   const correctMessages = Object.values(newMessage);
   const randomMessageIndex = Math.floor(Math.random() * correctMessages.length);
   const randMessage = correctMessages[randomMessageIndex]
   message.textContent = randMessage;
-  message.setAttribute('aria-label', randMessage)
+  message.setAttribute('aria-label', randMessage)// Applies screen reader to the text that is displayed
 }
 
 /** Gets stored gameValues{} stored in local storage */
@@ -67,12 +69,12 @@ function storeToLocalStorage(){
 function formSubmit(event) {
   event.preventDefault()
   location.href = "game.html";
-  displayNewQuestion()
+  displayNewQuestion();
 };
 
 function newGameformSubmit(event) {
-  event.preventDefault()
-  handleNumberInput(totalMathProblems)
+  event.preventDefault();
+  displayNewQuestion();
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -96,6 +98,13 @@ document.addEventListener('DOMContentLoaded', function() {
     resetButton.insertAdjacentElement('beforebegin', checkAnsButton);
     newGame()
   })
+  playerInput.addEventListener('keydown', (event) => {
+    if(event.key === 'Enter'){
+      event.preventDefault()
+      checkAnswer()
+    }
+  })
+
 })
 
 /**
@@ -194,6 +203,7 @@ function newGame() {
   questionRemainingText.innerText = gameValues.remainingMathQuestion;
   console.log('newGame', gameValues);
   playerInput.value = '';
+   gameSubMessage.innerText = 'test second game'
 }
 
 /** Displays new math question when answered correctly,
@@ -224,18 +234,20 @@ function displayNewQuestion() {
           gameValues.startingValue = 0;
           gameValues.answeredQuestion = 0;
       }, 3000);
+      
     }
 }
 
 /** Create acorns image and returns a list of acorn images for every right answer input. */
 function addAcorn() {
   const acronImage = document.createElement('img');
+    acronImage.classList.add('acorn-list-item');
     acronImage.src = './assets/images/acorn.webp';
-    acronImage.style.width = '30px'
     acronImage.ariaLabel = "Cartoon acorn";
   const acornListItem  = document.createElement('li');
-  acornListItem.appendChild(acronImage);
-  gameValues.collectedAcorn.push(acornListItem)
+    acornListItem.appendChild(acronImage);
+    gameValues.collectedAcorn.push(acornListItem);
+    
   return acornListItem;
 }
 
@@ -250,12 +262,12 @@ function checkAnswer() {
   const correctMsg = gameMessage.corrAnsMsg;
   const wrongMsg = gameMessage.wrongAnsMsg;
 
-  if(playerInput.value == details.result && gameValues.remainingMathQuestion){
+  if(playerInput.value == details.result && gameValues.remainingMathQuestion > 0){
     gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
     gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
     questionRemainingText.textContent = gameValues.remainingMathQuestion;
-
-    //Check if node has been applied
+  
+    //Check if node/acorn-image has been applied
     if(acorn instanceof Node) {
       acronUL.appendChild(acorn);
     }
@@ -264,14 +276,13 @@ function checkAnswer() {
     console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
   }else {
     setTimeout(() => {
-      message.textContent = `You need a right answer to move on.`
-    }, 3000);
-    setTimeout(() => {
-      message.textContent = ` Here's a hint (${hint} + ${hint})`
-    }, 5000);
+      message.textContent = `Enter the right answer to continue.`
+    }, 4000);
+   
     randomMsg(wrongMsg);
     playerInput.value = '';
-  }
+  } 
+ 
 }
 
 /** Rest all starting values and returns to home page */

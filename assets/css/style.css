@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0
+  padding: 0; 
 }
 :root {
 	/* primary colors and fonts */
@@ -275,6 +275,7 @@ span:first-child {
   grid-area: 3/4/4/10;
   text-align: center;
   padding: 0;
+  font-size: 1rem;
 }
 
 /* Scoreboard */
@@ -311,37 +312,40 @@ span:first-child {
   align-items: center;
 }
 
-.totals {
-  display: flex;
+.remaining-questions {
+  display: in-line;
+  padding-top: 1rem;
+  padding-left: 1rem;
+}
+
+.remaining-questions > h4 {
+  text-align: center;
+  font-size: 1.25rem;
   
 }
 
-.totals > h4, p {
-  text-align: center;
-  font-size: 1.25rem;
-  padding-top: 6px;
-}
-
- .totals > p {
-  padding-left: 6px;
+ .acron-list-wrapper {
+  display: flex;
+  width: 90%;
+  height: 100%;
+  margin: 12px auto;
+  border-top: 2px solid var(--header);
+  overflow: auto;
  }
-
 
 /* Acorn image list */
  ul {
   align-self: flex-start;
-  margin-top: 10px;
+  margin-top: 4px;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
  } 
  
- .acron-list-wrapper {
-  width: 90%;
-  margin: 30px auto;
-  border-top: 2px solid var(--header);
+ /* Acorn image size */
+ .acorn-list-item{
+  width: 20px;
  }
-
 
  /* Wrapper for button section dynamicly display in JS*/
  .game-button-wrapper {
@@ -493,13 +497,26 @@ input {
   width: 115px;
 }
 
+.total-wrapper {
+  flex-direction: flex-start;
+}
+
+.remaining-questions {
+  align-self: flex-start;
+  padding-top: 1rem;
+  padding-left: 1.25rem;
+}
+
+.acorn-list-item{
+  width: 25px;
+ }
+
 }
 
 /* Mobile iPads/tablets (468px - 768px) */
 @media only screen and (min-width: 468px) and (max-width: 768px){
-
 .container {
-  width: 90%;
+  width: 95%;
   min-height: 85vh;
   margin: 0 auto;
 }
@@ -551,6 +568,10 @@ input {
   padding: 1rem;
 }
 
+.bubble-message {
+  font-size: .9rem;
+}
+
 .game-wrapper {
   flex-direction: row;
 }
@@ -568,12 +589,35 @@ input {
 }
 
  .game-scoreboard  h3{
-  font-size: 1.75rem;
+  font-size: 1.5rem;
 }
 
-.totals {
-  align-self: flex-start;
+.total-wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: flex-start;
 }
+
+.remaining-questions {
+  align-self: flex-start;
+  padding-top: .5rem;
+  padding-left: .5rem;
+}
+
+.remaining-questions > h4 {
+  text-align: left;
+  font-size: 1rem;
+} 
+
+.remaining-questions > h4 span {
+  padding-left: .5rem;
+}
+
+ /* Acorn image size */
+ .acorn-list-item{
+  width: 18px;
+ }
+
 
 .button {
   width: 125px;
@@ -581,6 +625,14 @@ input {
 
 }
 
+ 
+/* Acorn image size */
+ @media only screen and (min-width: 750px) {
+.acorn-list-item{
+  width: 30px;
+ }
+
+}
 /* Small screens: laptops */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
 
@@ -634,6 +686,9 @@ input {
   padding: 1rem;
 }
 
+.bubble-message {
+  font-size: 1.2rem;
+} 
 .game-wrapper {
   flex-direction: row;
 }
@@ -654,15 +709,23 @@ input {
   font-size: 2.0rem;
 }
 
-.totals {
+.remaining-questions {
   align-self: flex-start;
 }
 
-.totals > h4, p {
-  text-align: center;
+.remaining-questions > h4 {
+  text-align: left;
   font-size: 1rem;
-  padding-top: 6px;
 } 
+
+.remaining-questions > h4 span {
+  padding-left: .5rem;
+}
+
+/* Acorn image size */
+.acorn-list-item{
+  width: 30px;
+ }
 
 .button {
   width: 150px;
@@ -675,7 +738,7 @@ input {
 @media only screen and (min-width: 1025px) and (max-width: 1200px) {
 
 .container {
-  width: 70%;
+  width: 80%;
   margin: 0 auto;
 }
 
@@ -738,6 +801,10 @@ input {
   order: 2;
 }
 
+.bubble-message {
+  font-size: 1.25rem;
+}
+
 .game-scoreboard {
   width: 40%;
   padding: 6px 8px;
@@ -745,11 +812,11 @@ input {
   order: 1;
 }
 
-.game-scoreboard h3{
+.game-scoreboard h3 {
   font-size: 2.5rem;
 }
 
-.totals {
+.remaining-questions {
   align-self: flex-start;
 }
 
@@ -757,12 +824,13 @@ input {
   width: 175px;
 }
 
+
 }
 
 /* Extra large screens above 1201px */
  @media only screen and (min-width: 1201px) {
 .container {
-  width: 50%;
+  width: 75%;
   margin: 0 auto;
 }
 
@@ -815,6 +883,10 @@ input {
   padding: 1rem;
 }
 
+.bubble-message {
+  font-size: 1.5rem;
+}
+
 .game-wrapper {
   flex-direction: row;
 }
@@ -840,11 +912,11 @@ input {
   font-size: 2.5rem;
 }
 
-.totals>h4 p {
+.remaining-questions>h4 p {
   font-size: 2rem;
 }
 
-.totals {
+.remaining-questions {
   align-self: flex-start;
 }
 
@@ -853,6 +925,15 @@ input {
   display: flex;
   justify-content: space-between;
   padding-top:14px;
+}
+
+.remaining-questions > h4 {
+  text-align: left;
+  font-size: 1.5rem;
+} 
+
+.remaining-questions > h4 span {
+  padding-left: .5rem;
 }
 
 .button{

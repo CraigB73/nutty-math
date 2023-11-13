@@ -35,7 +35,7 @@
       <div class="game-wrapper">
         <div class="game-image-wrapper"
              aria-label="Picture of a cartoon squirrel holding an acorn by a blue stream">
-          <div class="bubble-bg-img message-wrapper">
+          <div class="bubble-bg-img">
             <h3 id="message" class="bubble-message"></h3><!--Aria-label applied with js-->
           </div>
         </div>
@@ -44,11 +44,10 @@
             <h3>Scoreboard</h3>
           </div>
           <div class="total-wrapper">
-            <div class="totals">
-              <h4>Questions remaining: </h4>
-              <p id="questionRemainingText">0</p>
+            <div class="remaining-questions">
+              <h4>Questions remaining: <span id="questionRemainingText">0</span></h4>
             </div>
-            <div class="acronlistWrapper">
+            <div class="acron-list-wrapper">
               <ul id="acornUlList"></ul>
             </div>
           </div>
@@ -69,7 +68,7 @@
           <form onsubmit="newGameformSubmit(event)">
             <div class="name-input-wrapper playagain-input">
               <label for="totalInput" class="game-label amount-label"></label>
-              <input id="totalInput" name="totalInput" type="number" min="1" max="20"
+              <input id="totalInput" name="totalInput" type="number" min="5" max="20"
                      class="amount-input" placeholder="Number 5-20"
                      onkeyup="handleNumberInput(totalMathProblems)"
                      onblur="handleNumberInput(totalMathProblems)" required>
