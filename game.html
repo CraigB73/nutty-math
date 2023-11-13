@@ -14,7 +14,8 @@
   <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
 </head>
 
-<body onload="displayStartVal(event)">
+<!-- onload="displayStartVal(event)" -->
+<body>
   <div class="container game-container">
     <div class="arrow-wrapper">
       <a id="arrowNav" href="./index.html" target="_parent" aria-label="Link to home page"><img
@@ -45,7 +46,7 @@
           </div>
           <div class="total-wrapper">
             <div class="remaining-questions">
-              <h4>Questions remaining: <span id="questionRemainingText">0</span></h4>
+              <h4>Questions remaining: <span id="questionsRemaining">0</span></h4>
             </div>
             <div class="acron-list-wrapper">
               <ul id="acornUlList"></ul>
@@ -62,18 +63,18 @@
             <input id="playerInput" class="player-input" placeholder="#" autocomplete="off"
                    list="off" autofocus required>
             <label for="playerInput"></label>
-            <button data-type="check-Answer-Submit" id="checkAnswerButton" class="button">Check
+            <button data-type="check-Answer-Submit" id="checkAnswerButton" class="button" onclick="checkAnswer()">Check
               Answer</button>
           </form>
-          <form onsubmit="newGameformSubmit(event)">
+          <form onsubmit="">
             <div class="name-input-wrapper playagain-input">
               <label for="totalInput" class="game-label amount-label"></label>
               <input id="totalInput" name="totalInput" type="number" min="5" max="20"
                      class="amount-input" placeholder="Number 5-20"
-                     onkeyup="handleNumberInput(totalMathProblems)"
-                     onblur="handleNumberInput(totalMathProblems)" required>
+                     onkeyup="handleNumberInput()"
+                     onblur="handleNumberInput()" required>
             </div>
-            <button type="submit" data-type="play-button" id="playButton"
+            <button type="submit" id="playButton"
                     class="button start-btn">Play</button>
           </form>
         </div>

@@ -27,33 +27,30 @@
       </div>
     </header>
     <main class="outline home-main-container">
-      <form class="form-wrapper-home" action="game.html" method="get" target="_self"
+      <form class="form-wrapper-home" action="game.html" method="post" target="_self"
             onsubmit="formSubmit(event)">
         <div class="name-input-wrapper">
           <label for="firstName" class="home-label">Say, Hi!</label>
-          <input id="firstName" name="first_name" type="text" class="name-input" type="text"
+          <input id="firstNameInput" name="first_name" type="text" class="name-input" type="text"
                  placeholder="Enter your name here:" onblur="handleNameInput()" autofocus
                  autocomplete="false" required>
         </div>
         <div class="name-input-wrapper">
           <label for="totalInput" class="home-label amount-label">Choose your challenge: </label>
           <input id="totalInput" name="totalInput" type="number" min="5" max="20"
-                 class="number-input" placeholder="Number 5-20"
-                 onblur="handleNumberInput(totalMathProblems)"
-                 onkeypress="handleNumberInput(totalMathProblems)" autocomplete="false" required>
+                 class="number-input" placeholder="Number 5-20" autocomplete="false" required>
         </div>
         <div>
-          <button data-type="submit-game-values" id="playGameBtn" class="goto-game-btn"
+          <button type="submit" id="playGameBtn" class="goto-game-btn"
                   value="Go To Game">Play
             Game</button>
         </div>
       </form>
       <section class="instruction-wrapper">
         <h2 class="instruction-headers">Instructions</h2>
-        <p>Hello<span class="first-name" id="fname"></span> and welcome to Nutty Math.</p>
+        <p>Hello<span class="first-name" id="spanFirstName"></span> and welcome to Nutty Math.</p>
         <p>It's not a challenge with fewer than five questions, so be sure to select your challenge
-          from a range
-          of 5-20 math questions.</p>
+          from a range of 5-20 math questions.</p>
         <p>Next, press the "Play Game" button and help Nutty race against the clock to gather acorns
           and boost your math skills!</p>
         <h2 class="instruction-headers">Object of the game</h2>
