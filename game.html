@@ -15,6 +15,7 @@
 </head>
 
 <!-- onload="displayStartVal(event)" -->
+
 <body>
   <div class="container game-container">
     <div class="arrow-wrapper">
@@ -37,7 +38,7 @@
         <div class="game-image-wrapper"
              aria-label="Picture of a cartoon squirrel holding an acorn by a blue stream">
           <div class="bubble-bg-img">
-            <h3 id="message" class="bubble-message"></h3><!--Aria-label applied with js-->
+            <h3 id="nuttyMessage" class="bubble-message"></h3><!--Aria-label applied with js-->
           </div>
         </div>
         <div id="scoreBoard" class="game-scoreboard">
@@ -59,23 +60,21 @@
         <div class="math-input">
           <form class="player-input-wrapper">
             <h3 id="mathQuestion" class="math-question"></h3>
-            <h4 id="gameSubMessage"></h4>
+            <h4 id="gameMessage"></h4>
             <input id="playerInput" class="player-input" placeholder="#" autocomplete="off"
-                   list="off" autofocus required>
+                   list="off" autofocus required >
             <label for="playerInput"></label>
-            <button data-type="check-Answer-Submit" id="checkAnswerButton" class="button" onclick="checkAnswer()">Check
+            <button data-type="check-Answer-Submit" id="checkAnswerButton" class="button"
+                    onclick="checkAnswer()">Check
               Answer</button>
           </form>
-          <form onsubmit="">
+          <form action="game.html" method="post" target="_self" >
             <div class="name-input-wrapper playagain-input">
               <label for="totalInput" class="game-label amount-label"></label>
               <input id="totalInput" name="totalInput" type="number" min="5" max="20"
-                     class="amount-input" placeholder="Number 5-20"
-                     onkeyup="handleNumberInput()"
-                     onblur="handleNumberInput()" required>
+                     class="amount-input" placeholder="Number 5-20"  required>
             </div>
-            <button type="submit" id="playButton"
-                    class="button start-btn">Play</button>
+            <button type="submit" id="playButton" class="button start-btn"  onclick="formSubmit(event)">Play</button>
           </form>
         </div>
         <div class="game-button-wrapper">

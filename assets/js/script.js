@@ -10,7 +10,7 @@ let gameValues = {
  // Messsage to be displayed the message bubble in the game page.
 const gameMessage = {
   startGameMsg: 'Lets do this!',
-  endGameMsg: `You did great! Have another go.`,
+  endGameMsg: `You did great. Have another go!`,
   playAgainMsg: 'Come on, let\'s play again!',
   corrAnsMsg:{
     cMsg1: 'Great, keep it up!',
@@ -20,9 +20,9 @@ const gameMessage = {
 
   },
   wrongAnsMsg: {
-    wMsg1: 'You got this!',
+    wMsg1: 'Give this one a go!',
     wMsg2: 'Take a deep breath and try again.',
-    wMsg3: 'Take your time and give it one more try.',
+    wMsg3: 'Try this question.',
     wMsg4: 'Good try! Give it another go.',
   }
 }
@@ -34,8 +34,8 @@ function randomMsg(newMessage) {
   const correctMessages = Object.values(newMessage);
   const randomMessageIndex = Math.floor(Math.random() * correctMessages.length);
   const randMessage = correctMessages[randomMessageIndex]
-  message.textContent = randMessage;
-  message.setAttribute('aria-label', randMessage)// Applies screen reader to the text that is displayed
+  nuttyMessage.textContent = randMessage;
+  nuttyMessage.setAttribute('aria-label', randMessage)// Applies screen reader to the text that is displayed
 }
 
 
@@ -89,14 +89,14 @@ storedValues ? (gameValues = storedValues) : gameValues;
 function removeElement  (...element) {
   // Loops through ...element parameter using spread operator for mulitple elements
   element.forEach(element => {
-    element.style.display = 'none'
+    element ? element.style.display = 'none' : null;
   })
   }
 
 /** Helper function that can take in more than one element using the spread operator to add HTML element*/
 function addElement  (...element) {
   element.forEach(element => {
-    element.style.display = 'block'
+    element ? element.style.display = 'block' : null;
   })
   }
 
@@ -107,42 +107,77 @@ function addElement  (...element) {
 function formSubmit(event) {
   const totalInputValue = document.getElementById('totalInput'); 
   event.preventDefault()
-  location.href = 'game.html';
+   location.href = 'game.html';
   totalInputValue ? handleNumberInput(totalInputValue) : null;
-  
+
 };
 
 /* Loads game values and intial math question as well as listens for game events: checkAswer,  */
 document.addEventListener('DOMContentLoaded', function() {
   const playBtn = document.getElementById('playButton');
   const resetBtn = document.getElementById('resetButton');
-  const checkAnswerBtn = document.getElementById('checkAnswerButton')
+  const checkAnswerBtn = document.getElementById('checkAnswerButton');
+  const playerInput = document.getElementById('playerInput');
   removeElement(playBtn)
-  resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn);
- game();
-})
-
-
-function game() {
-  document.getElementById('questionsRemaining').innerText = gameValues.remainingMathQuestion;
-  Object.assign(details,  generateMathProblem());
-  document.getElementById('mathQuestion').textContent = `${details.equation} = `;
-  document.getElementById('message').innerText = gameMessage.startGameMsg;
-  console.log(gameValues)
-  if (gameValues.answeredQuestion < gameValues.startingValue) {
-    newMathEquation()
-  }else{
-    console.log('Game ended')
+  resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null;
+  game();
+  if(playerInput){
+    playerInput.addEventListener('keypress', (event) => {
+      if(event.key === 'Enter') {
+        checkAnswer()
+      }
+    })
+    return; 
   }
 
+})
+
+function game() {
+  const remainingQuestion = document.getElementById('questionsRemaining')
+  const mathQuestion = document.getElementById('mathQuestion')
+  const nuttyMessage = document.getElementById('nuttyMessage')
+  Object.assign(details,  generateMathProblem());
+
+  if(remainingQuestion || mathQuestion || nuttyMessage){
+    document.getElementById('totalInput').style.display = 'none';
+    remainingQuestion.innerText = gameValues.remainingMathQuestion;
+    mathQuestion.textContent = `${details.equation} = `;
+    nuttyMessage.innerText = gameMessage.startGameMsg;
+  }
 }
 
+function endGame() {
+  const playBtn = document.getElementById('playButton');
+  const resetBtn = document.getElementById('resetButton');
+  const checkAnswerBtn = document.getElementById('checkAnswerButton');
+  const message = document.getElementById('gameMessage');
+  const totalInputValue = document.getElementById('totalInput'); 
+  removeElement(playerInput, mathQuestion);
+  message.innerText = 'Keep gather! Choose your next challange';
+  if(gameValues.remainingMathQuestion === 0){
+    removeElement(checkAnswerBtn);
+    addElement(playBtn, totalInputValue );
+    nuttyMessage.innerText = gameMessage.endGameMsg;
+    resetBtn ? resetBtn.insertAdjacentElement('beforebegin', playBtn) : null;
+  }
+  console.log('game ended')
+}
+
+
+
+
 function newMathEquation() {
+  const mathQuestion = document.getElementById('mathQuestion');
+  const playersAnswer = document.getElementById('playerInput');
   Object.assign(details,  generateMathProblem());
-  document.getElementById('mathQuestion').textContent = `${details.equation} = `;
-  document.getElementById('playerInput').value = '';
-  document.getElementById('playerInput').focus();
-  console.log(details.equation +  ' = ' + details.result)
+  if(gameValues.remainingMathQuestion > 0){
+    playersAnswer.value;
+    playersAnswer.focus();
+    mathQuestion.textContent = `${details.equation} = `;
+    console.log(details.equation +  ' = ' + details.result)
+  }else {
+    endGame()
+  }
 }
 /** Creates random math equation  */
 function generateMathProblem() {
@@ -188,30 +223,54 @@ function addAcorn() {
  *  from Nutty depending on the correctness of playerInput, and adds an acorn.
  * */
 function checkAnswer() {
-  const acorn = addAcorn();
-  const acronUL = document.getElementById('acornUlList')
-  const correctMsg = gameMessage.corrAnsMsg;
-  const wrongMsg = gameMessage.wrongAnsMsg;
+  const playerInput = document.getElementById('playerInput');
+  nuttyMessage.innerText = `Enter a number or press "Enter"`
+  if(playerInput.value == details.result){
+    correctAnswer()
+    playerInput.value = '';
+  }else {
+    wrongAnswer()
+    playerInput.value = '';
+  }
+  newMathEquation()
+}
 
-  if(playerInput.value == details.result && gameValues.remainingMathQuestion > 0){
+/**
+ * Evaluates if player answer input is truthy then
+ * updates the dom: Nutty's message, remaining math questions and 
+ * displays an acron.
+ */
+function correctAnswer() {
+  const acorn = addAcorn();
+  const correctMsg = gameMessage.corrAnsMsg;
+  const acronUL = document.getElementById('acornUlList');
+    randomMsg(correctMsg);
     gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
     gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
     document.getElementById('questionsRemaining').textContent = gameValues.remainingMathQuestion;
-  
-    //Check if node/acorn-image has been applied
-    if(acorn instanceof Node) {
-      acronUL.appendChild(acorn);
-    }
-    randomMsg(correctMsg);
-    newMathEquation();
+
+   //Check if node/acorn-image has been applied
+   acorn instanceof Node ? acronUL.appendChild(acorn) : null ;
+   console.log('correct')
     console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
-  }else {
-    setTimeout(() => {
-      document.getElementById('message').textContent = `Enter the right answer to continue.`
-    }, 4000);
-   
-    randomMsg(wrongMsg);
-    playerInput.value = '';
-  } 
- 
+};
+
+/**
+ * Evaluates if player answer input is falsey
+ * updates the dom message and displays new math question.
+ */
+function wrongAnswer() {
+  const wrongMsg = gameMessage.wrongAnsMsg; 
+  randomMsg(wrongMsg);
+  gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
+  gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
+  document.getElementById('questionsRemaining').textContent = gameValues.remainingMathQuestion;
+  console.log('wrong answer')
+  console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
+};
+
+/** Rest all starting values and returns to home page */
+function reset() {
+  location.href = 'index.html';
+  localStorage.clear()
 }

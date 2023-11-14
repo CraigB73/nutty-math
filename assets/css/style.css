@@ -560,7 +560,6 @@ input {
 
 /* Wraps the header and game page */
 .outline-game {
-  width: 100%;
   margin-top: 40px;
   border: 4px solid var(--secondary-bgc);
   border-radius: 10px;
@@ -780,7 +779,6 @@ input {
 }
 
 .outline-game {
-  width: 100%;
   border: 4px solid var(--secondary-bgc);
   border-radius: 10px;
   background: linear-gradient( to bottom right, #3f9cb1, #b6e8e9 );
@@ -797,7 +795,6 @@ input {
 }
 
 .game-image-wrapper {
-  width: 60%;
   order: 2;
 }
 
@@ -806,7 +803,6 @@ input {
 }
 
 .game-scoreboard {
-  width: 40%;
   padding: 6px 8px;
   height: auto;
   order: 1;
@@ -876,7 +872,6 @@ input {
 }
 
 .outline-game {
-  width: 100%;
   border: 4px solid var(--secondary-bgc);
   border-radius: 10px;
   background: linear-gradient( to bottom right, #3f9cb1, #b6e8e9 );
@@ -897,12 +892,10 @@ input {
 }
 
 .game-image-wrapper {
-  width: 60%;
   order: 2;
 }
 
 .game-scoreboard {
-  width: 40%;
   padding: 6px 8px;
   height: auto;
   order: 1;

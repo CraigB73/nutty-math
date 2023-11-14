@@ -238,50 +238,50 @@ function displayNewQuestion() {
 }
 
 /** Create acorns image and returns a list of acorn images for every right answer input. */
-function addAcorn() {
-  const acronImage = document.createElement('img');
-    acronImage.classList.add('acorn-list-item');
-    acronImage.src = './assets/images/acorn.webp';
-    acronImage.ariaLabel = "Cartoon acorn";
-  const acornListItem  = document.createElement('li');
-    acornListItem.appendChild(acronImage);
-    gameValues.collectedAcorn.push(acornListItem);
+// function addAcorn() {
+//   const acronImage = document.createElement('img');
+//     acronImage.classList.add('acorn-list-item');
+//     acronImage.src = './assets/images/acorn.webp';
+//     acronImage.ariaLabel = "Cartoon acorn";
+//   const acornListItem  = document.createElement('li');
+//     acornListItem.appendChild(acronImage);
+//     gameValues.collectedAcorn.push(acornListItem);
     
-  return acornListItem;
-}
+//   return acornListItem;
+// }
 
 /** Evaluates player input check if answer is correc, updates message
- *  from Nutty depending on the correctness of playerInput, and adds an acorn.
- * */
-function checkAnswer() {
-  const acorn = addAcorn();
-  const acronUL = document.getElementById('acornUlList')
-  const questionRemainingText = document.getElementById('questionRemainingText');
-  const correctMsg = gameMessage.corrAnsMsg;
-  const wrongMsg = gameMessage.wrongAnsMsg;
+//  *  from Nutty depending on the correctness of playerInput, and adds an acorn.
+//  * */
+// function checkAnswer() {
+//   const acorn = addAcorn();
+//   const acronUL = document.getElementById('acornUlList')
+//   const questionRemainingText = document.getElementById('questionRemainingText');
+//   const correctMsg = gameMessage.corrAnsMsg;
+//   const wrongMsg = gameMessage.wrongAnsMsg;
 
-  if(playerInput.value == details.result && gameValues.remainingMathQuestion > 0){
-    gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
-    gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
-    questionRemainingText.textContent = gameValues.remainingMathQuestion;
+//   if(playerInput.value == details.result && gameValues.remainingMathQuestion > 0){
+//     gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
+//     gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
+//     questionRemainingText.textContent = gameValues.remainingMathQuestion;
   
-    //Check if node/acorn-image has been applied
-    if(acorn instanceof Node) {
-      acronUL.appendChild(acorn);
-    }
-    randomMsg(correctMsg);
-    displayNewQuestion();
-    console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
-  }else {
-    setTimeout(() => {
-      message.textContent = `Enter the right answer to continue.`
-    }, 4000);
+//     //Check if node/acorn-image has been applied
+//     if(acorn instanceof Node) {
+//       acronUL.appendChild(acorn);
+//     }
+//     randomMsg(correctMsg);
+//     displayNewQuestion();
+//     console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
+//   }else {
+//     setTimeout(() => {
+//       message.textContent = `Enter the right answer to continue.`
+//     }, 4000);
    
-    randomMsg(wrongMsg);
-    playerInput.value = '';
-  } 
+//     randomMsg(wrongMsg);
+//     playerInput.value = '';
+//   } 
  
-}
+// }
 
 /** Rest all starting values and returns to home page */
 function reset() {
