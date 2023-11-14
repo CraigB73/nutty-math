@@ -68,7 +68,7 @@
                     onclick="checkAnswer()">Check
               Answer</button>
           </form>
-          <form action="game.html" method="post" target="_self" >
+          <form onsubmit="newGameformSubmit(event)" action="game.html" method="post" target="_self" >
             <div class="name-input-wrapper playagain-input">
               <label for="totalInput" class="game-label amount-label"></label>
               <input id="totalInput" name="totalInput" type="number" min="5" max="20"

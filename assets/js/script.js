@@ -2,7 +2,8 @@
 let gameValues = {
   playerName: '',
   remainingMathQuestion:0,
-  answeredQuestion:  0,
+  correct:  0,
+  wrong: 0,
   startingValue: 0,
   collectedAcorn: [],
  }
@@ -107,10 +108,19 @@ function addElement  (...element) {
 function formSubmit(event) {
   const totalInputValue = document.getElementById('totalInput'); 
   event.preventDefault()
-   location.href = 'game.html';
+  location.href = 'game.html';
   totalInputValue ? handleNumberInput(totalInputValue) : null;
-
+ 
 };
+
+function newGameformSubmit(event) {
+  const totalInputValue = document.getElementById('totalInput'); 
+  event.preventDefault()
+  totalInputValue ? handleNumberInput(totalInputValue) : null;
+  if(gameValues.collectedAcorn > 0 ) {
+
+  }
+}
 
 /* Loads game values and intial math question as well as listens for game events: checkAswer,  */
 document.addEventListener('DOMContentLoaded', function() {
@@ -119,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
   const playerInput = document.getElementById('playerInput');
   removeElement(playBtn)
-  resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null;
+  resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null; 
   game();
   if(playerInput){
     playerInput.addEventListener('keypress', (event) => {
@@ -134,8 +144,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function game() {
   const remainingQuestion = document.getElementById('questionsRemaining')
-  const mathQuestion = document.getElementById('mathQuestion')
-  const nuttyMessage = document.getElementById('nuttyMessage')
+  const mathQuestion = document.getElementById('mathQuestion');
+  const nuttyMessage = document.getElementById('nuttyMessage');
   Object.assign(details,  generateMathProblem());
 
   if(remainingQuestion || mathQuestion || nuttyMessage){
@@ -151,16 +161,21 @@ function endGame() {
   const resetBtn = document.getElementById('resetButton');
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
   const message = document.getElementById('gameMessage');
-  const totalInputValue = document.getElementById('totalInput'); 
+  const totalInputValue = document.getElementById('totalInput');
+  const numberOfAcorns = gameValues.collectedAcorn.length; 
   removeElement(playerInput, mathQuestion);
   message.innerText = 'Keep gather! Choose your next challange';
   if(gameValues.remainingMathQuestion === 0){
+    console.log(numberOfAcorns)
     removeElement(checkAnswerBtn);
     addElement(playBtn, totalInputValue );
-    nuttyMessage.innerText = gameMessage.endGameMsg;
+    setTimeout(() =>{      gameValues.correct > 0 ?  nuttyMessage.innerText = gameMessage.endGameMsg : nuttyMessage.innerText = 'Sorry better luck next time!';
+   } , 3000)
+    numberOfAcorns ===  0 ? nuttyMessage.textContent = `Sorry! You collected ${numberOfAcorns} acorns this time.`
+    : nuttyMessage.textContent = `Great job! You collected ${numberOfAcorns} acorns.`   
     resetBtn ? resetBtn.insertAdjacentElement('beforebegin', playBtn) : null;
   }
-  console.log('game ended')
+
 }
 
 
@@ -246,13 +261,13 @@ function correctAnswer() {
   const acronUL = document.getElementById('acornUlList');
     randomMsg(correctMsg);
     gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
-    gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
+    gameValues.correct = gameValues.correct + 1;
     document.getElementById('questionsRemaining').textContent = gameValues.remainingMathQuestion;
 
    //Check if node/acorn-image has been applied
-   acorn instanceof Node ? acronUL.appendChild(acorn) : null ;
+   acorn instanceof Node ? acronUL.appendChild(acorn) : acronUL ;
    console.log('correct')
-    console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
+   console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
 };
 
 /**
@@ -263,9 +278,8 @@ function wrongAnswer() {
   const wrongMsg = gameMessage.wrongAnsMsg; 
   randomMsg(wrongMsg);
   gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
-  gameValues.answeredQuestion = gameValues.answeredQuestion + 1;
+  gameValues.wrong = gameValues.wrong+ 1;
   document.getElementById('questionsRemaining').textContent = gameValues.remainingMathQuestion;
-  console.log('wrong answer')
   console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
 };
 
