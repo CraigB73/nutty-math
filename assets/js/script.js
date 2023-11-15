@@ -5,7 +5,7 @@ let gameValues = {
   correct:  0,
   wrong: 0,
   startingValue: 0,
-  collectedAcorn: [],
+  score : {collectedAcorn: 0},
  }
 
  // Messsage to be displayed the message bubble in the game page.
@@ -43,7 +43,7 @@ function randomMsg(newMessage) {
 /** Gets stored gameValues{} stored in local storage */
 function getFromLocalStorage(){
   const storedValues = localStorage.getItem(gameValues);
- return storedValues ? JSON.parse(storedValues) : undefined;
+  return storedValues ? JSON.parse(storedValues) : undefined;
 }
 
 /** Stores gameValues obj to local storage */
@@ -101,35 +101,32 @@ function addElement  (...element) {
   })
   }
 
-
 /**
  * Navigates to game page and displays and runs handleNumberInput()
  * */  
 function formSubmit(event) {
   const totalInputValue = document.getElementById('totalInput'); 
   event.preventDefault()
-  location.href = 'game.html';
+  console.log(location)
   totalInputValue ? handleNumberInput(totalInputValue) : null;
- 
+  console.log(event)
+  location.href = event.target.action;
+  
 };
-
-function newGameformSubmit(event) {
-  const totalInputValue = document.getElementById('totalInput'); 
-  event.preventDefault()
-  totalInputValue ? handleNumberInput(totalInputValue) : null;
-  if(gameValues.collectedAcorn > 0 ) {
-
-  }
-}
 
 /* Loads game values and intial math question as well as listens for game events: checkAswer,  */
 document.addEventListener('DOMContentLoaded', function() {
   const playBtn = document.getElementById('playButton');
   const resetBtn = document.getElementById('resetButton');
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
-  const playerInput = document.getElementById('playerInput');
+  const playerInput = document.getElementById('playerInput'); 
+  const acronUL = document.getElementById('acornUlList');
   removeElement(playBtn)
-  resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null; 
+  resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null;
+   Array.from({length:gameValues.score.collectedAcorn}).forEach(() => {
+    acronUL.appendChild( createAcorn()) 
+  })
+  console.log(gameValues)
   game();
   if(playerInput){
     playerInput.addEventListener('keypress', (event) => {
@@ -139,7 +136,9 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     return; 
   }
-
+  
+  
+  
 })
 
 function game() {
@@ -162,24 +161,19 @@ function endGame() {
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
   const message = document.getElementById('gameMessage');
   const totalInputValue = document.getElementById('totalInput');
-  const numberOfAcorns = gameValues.collectedAcorn.length; 
   removeElement(playerInput, mathQuestion);
   message.innerText = 'Keep gather! Choose your next challange';
   if(gameValues.remainingMathQuestion === 0){
-    console.log(numberOfAcorns)
     removeElement(checkAnswerBtn);
     addElement(playBtn, totalInputValue );
-    setTimeout(() =>{      gameValues.correct > 0 ?  nuttyMessage.innerText = gameMessage.endGameMsg : nuttyMessage.innerText = 'Sorry better luck next time!';
+    setTimeout(() =>{ gameValues.correct > 0 ?  nuttyMessage.innerText = gameMessage.endGameMsg : nuttyMessage.innerText = 'Sorry better luck next time!';
    } , 3000)
-    numberOfAcorns ===  0 ? nuttyMessage.textContent = `Sorry! You collected ${numberOfAcorns} acorns this time.`
-    : nuttyMessage.textContent = `Great job! You collected ${numberOfAcorns} acorns.`   
+    // numberOfAcorns ===  0 ? nuttyMessage.textContent = `Sorry! You collected ${null} acorns this time.`
+    // : nuttyMessage.textContent = `Great job! You collected ${numberOfAcorns} acorns.`   
     resetBtn ? resetBtn.insertAdjacentElement('beforebegin', playBtn) : null;
   }
 
 }
-
-
-
 
 function newMathEquation() {
   const mathQuestion = document.getElementById('mathQuestion');
@@ -222,14 +216,14 @@ function generateMathProblem() {
 const details = { equation: undefined, result: undefined}
 
 /** Create acorns image and returns a list of acorn images for every right answer input. */
-function addAcorn() {
+function createAcorn() {
   const acronImage = document.createElement('img');
     acronImage.classList.add('acorn-list-item');
     acronImage.src = './assets/images/acorn.webp';
     acronImage.ariaLabel = "Cartoon acorn";
   const acornListItem  = document.createElement('li');
     acornListItem.appendChild(acronImage);
-    gameValues.collectedAcorn.push(acornListItem);
+    
     
   return acornListItem;
 }
@@ -256,7 +250,7 @@ function checkAnswer() {
  * displays an acron.
  */
 function correctAnswer() {
-  const acorn = addAcorn();
+  const acorn = createAcorn();
   const correctMsg = gameMessage.corrAnsMsg;
   const acronUL = document.getElementById('acornUlList');
     randomMsg(correctMsg);
@@ -265,6 +259,7 @@ function correctAnswer() {
     document.getElementById('questionsRemaining').textContent = gameValues.remainingMathQuestion;
 
    //Check if node/acorn-image has been applied
+   gameValues.score.collectedAcorn++; 
    acorn instanceof Node ? acronUL.appendChild(acorn) : acronUL ;
    console.log('correct')
    console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)

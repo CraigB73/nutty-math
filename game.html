@@ -62,19 +62,21 @@
             <h3 id="mathQuestion" class="math-question"></h3>
             <h4 id="gameMessage"></h4>
             <input id="playerInput" class="player-input" placeholder="#" autocomplete="off"
-                   list="off" autofocus required >
+                   list="off" autofocus required>
             <label for="playerInput"></label>
             <button data-type="check-Answer-Submit" id="checkAnswerButton" class="button"
                     onclick="checkAnswer()">Check
               Answer</button>
           </form>
-          <form onsubmit="newGameformSubmit(event)" action="game.html" method="post" target="_self" >
+          <form action="game.html" method="post" target="_self" onsubmit="formSubmit(event)"
+                id="new-game-form">
             <div class="name-input-wrapper playagain-input">
               <label for="totalInput" class="game-label amount-label"></label>
-              <input id="totalInput" name="totalInput" type="number" min="5" max="20"
-                     class="amount-input" placeholder="Number 5-20"  required>
+              <input id="totalInput" name="totalInput" type="number" min="1" max="20"
+                     class="amount-input" placeholder="Number 5-20" required>
             </div>
-            <button type="submit" id="playButton" class="button start-btn"  onclick="formSubmit(event)">Play</button>
+            <button type="submit" id="playButton" class="button start-btn"
+                    form="new-game-form">Play</button>
           </form>
         </div>
         <div class="game-button-wrapper">
