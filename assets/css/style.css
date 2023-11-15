@@ -173,14 +173,14 @@ span:first-child {
   font-weight: 900;
 }
 
-.challenge-total-wrapper {
+.challenge-total-score-wrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 16px;
 }
 
-.challenge-total-wrapper > input {
+.challenge-total-score-wrapper > input {
   width: 25px;
   text-align: center;
   background-color: transparent;
@@ -280,57 +280,42 @@ span:first-child {
 
 /* Scoreboard */
 .game-scoreboard {
-  grid-area: 2/1/2/4;
   display: flex;
   flex-direction: column;
   border: 4px solid var(--header);
   border-radius: 10px;
   background-color: rgba(238, 227, 203, 0.7);
-}
-
-.score-board-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-}
-
-.game-scoreboard {
-  width: 100%;
-  height: auto;
+  padding: 16px 16px 0 16px;
   order: 1;
 }
 
-.game-scoreboard h3{
+.game-scoreboard > h3 {
   font-size: 1.75rem;
   text-align: center;
+  letter-spacing: 2px;
 }
 
-.total-wrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.question-totals-wrapper {
+  padding-top: 16px;
 }
 
-.remaining-questions {
-  display: in-line;
-  padding-top: 1rem;
-  padding-left: 1rem;
+ h4.total-questions {
+  font-size: 1rem;
+  padding: 2px 0;
 }
 
-.remaining-questions > h4 {
-  text-align: center;
-  font-size: 1.25rem;
-  
+h4.total-questions > span {
+  padding-left: .5rem;
 }
+
 
  .acron-list-wrapper {
-  display: flex;
-  width: 90%;
   height: 100%;
-  margin: 12px auto;
+  grid-area: 3/1/4/5;
+  display: flex;
+  margin: 12px 0;
   border-top: 2px solid var(--header);
-  overflow: auto;
+  overflow: auto;  
  }
 
 /* Acorn image list */
@@ -347,6 +332,7 @@ span:first-child {
   width: 20px;
  }
 
+ 
  /* Wrapper for button section dynamicly display in JS*/
  .game-button-wrapper {
   width: 100%;
@@ -462,7 +448,13 @@ input {
 }
 
 }
+/* Game total font placement*/
+@media only screen  and (min-width: 604px) {
+ h4.total-questions {
+  font-size: 14px;
+}
 
+}
 /* Small mobile screens*/
 @media only screen  and (min-width: 320px) and (max-width: 467px){
 .h1-nutty, .h1-math {
@@ -489,22 +481,8 @@ input {
   font-size: 2rem;
 }
 
- .game-scoreboard  h3{
-  font-size: 2rem;
-}
-
 .button {
   width: 115px;
-}
-
-.total-wrapper {
-  flex-direction: flex-start;
-}
-
-.remaining-questions {
-  align-self: flex-start;
-  padding-top: 1rem;
-  padding-left: 1.25rem;
 }
 
 .acorn-list-item{
@@ -580,43 +558,23 @@ input {
   order: 2;
 }
 
+/* Scoreboard */
 .game-scoreboard {
-  width: 45%;
-  padding: 6px 8px;
-  height: auto;
-  order: 1;
+  width: 42%;
 }
 
- .game-scoreboard  h3{
-  font-size: 1.5rem;
+.game-scoreboard > h3 {
+  font-size: 1.15rem;
 }
 
-.total-wrapper {
-  height: 100%;
-  display: flex;
-  flex-direction: flex-start;
-}
-
-.remaining-questions {
-  align-self: flex-start;
-  padding-top: .5rem;
-  padding-left: .5rem;
-}
-
-.remaining-questions > h4 {
-  text-align: left;
-  font-size: 1rem;
-} 
-
-.remaining-questions > h4 span {
-  padding-left: .5rem;
+ h4.total-questions {
+  font-size: .75rem;
 }
 
  /* Acorn image size */
  .acorn-list-item{
   width: 18px;
  }
-
 
 .button {
   width: 125px;
@@ -634,7 +592,6 @@ input {
 }
 /* Small screens: laptops */
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
-
 .container {
   width: 90%;
   margin: 0 auto;
@@ -688,6 +645,7 @@ input {
 .bubble-message {
   font-size: 1.2rem;
 } 
+
 .game-wrapper {
   flex-direction: row;
 }
@@ -697,28 +655,17 @@ input {
   order: 2;
 }
 
+/* Scoreboard */
 .game-scoreboard {
-  width: 40%;
-  padding: 6px 8px;
-  height: auto;
-  order: 1;
+  width: 55%;
 }
 
-.game-scoreboard h3 {
-  font-size: 2.0rem;
+.game-scoreboard > h3 {
+  font-size: 2rem;
 }
 
-.remaining-questions {
-  align-self: flex-start;
-}
-
-.remaining-questions > h4 {
-  text-align: left;
-  font-size: 1rem;
-} 
-
-.remaining-questions > h4 span {
-  padding-left: .5rem;
+ h4.total-questions {
+  font-size: 1.25rem;
 }
 
 /* Acorn image size */
@@ -730,12 +677,10 @@ input {
   width: 150px;
 }
 
-
 }
 
 /* Large screens: desktops*/
 @media only screen and (min-width: 1025px) and (max-width: 1200px) {
-
 .container {
   width: 80%;
   margin: 0 auto;
@@ -802,24 +747,22 @@ input {
   font-size: 1.25rem;
 }
 
+/* Scoreboard */
 .game-scoreboard {
-  padding: 6px 8px;
-  height: auto;
-  order: 1;
+  width: 55%;
 }
 
-.game-scoreboard h3 {
-  font-size: 2.5rem;
+.game-scoreboard > h3 {
+  font-size: 2rem;
 }
 
-.remaining-questions {
-  align-self: flex-start;
+ h4.total-questions {
+  font-size: 1.25rem;
 }
 
 .button {
   width: 175px;
 }
-
 
 }
 
@@ -901,32 +844,29 @@ input {
   order: 1;
 }
 
-.game-scoreboard h3{
-  font-size: 2.5rem;
+/* Scoreboard */
+.game-scoreboard {
+  width: 60%;
 }
 
-.remaining-questions>h4 p {
+.game-scoreboard > h3 {
   font-size: 2rem;
 }
 
-.remaining-questions {
-  align-self: flex-start;
+ h4.total-questions {
+  font-size: 1.5rem;
 }
+
+h4.total-questions > span {
+  padding-left: .5rem;
+}
+
 
 .social-icon-wrapper {
   width: 30vw;
   display: flex;
   justify-content: space-between;
   padding-top:14px;
-}
-
-.remaining-questions > h4 {
-  text-align: left;
-  font-size: 1.5rem;
-} 
-
-.remaining-questions > h4 span {
-  padding-left: .5rem;
 }
 
 .button{
