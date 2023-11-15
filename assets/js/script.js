@@ -5,7 +5,7 @@ let gameValues = {
   correct:  0,
   wrong: 0,
   startingValue: 0,
-  score : {collectedAcorn: 0},
+  score : {totalquestion: 0, collectedAcorn: 0},
  };
 
  // Messsage to be displayed the message bubble in the game page.
@@ -126,9 +126,9 @@ document.addEventListener('DOMContentLoaded', function() {
    Array.from({length:gameValues.score.collectedAcorn}).forEach(() => {
     acronUL.appendChild(createAcorn()); 
   });
-
+  console.log(gameValues)
   game();
-
+  
   if(playerInput){
     playerInput.addEventListener('keypress', (event) => {
       if(event.key === 'Enter') {
@@ -144,13 +144,15 @@ document.addEventListener('DOMContentLoaded', function() {
  */
 function game() {
   const remainingQuestion = document.getElementById('questionsRemaining');
+  const totalQuestion =  document.getElementById('totalQuestion')
   const mathQuestion = document.getElementById('mathQuestion');
   const nuttyMessage = document.getElementById('nuttyMessage');
   Object.assign(details,  generateMathProblem());
 
-  if(remainingQuestion || mathQuestion || nuttyMessage){
+  if(remainingQuestion || mathQuestion || nuttyMessage || totalQuestion){
     document.getElementById('totalInput').style.display = 'none';
     remainingQuestion.innerText = gameValues.remainingMathQuestion;
+    totalQuestion.innerText = gameValues.score.totalquestion;
     mathQuestion.textContent = `${details.equation} = `;
     nuttyMessage.innerText = gameMessage.startGameMsg;
   };
@@ -241,6 +243,7 @@ function createAcorn() {
  * */
 function checkAnswer() {
   const playerInput = document.getElementById('playerInput');
+  const totalQuestion =  document.getElementById('totalQuestion');
   nuttyMessage.innerText = `Enter a number or press "Enter"`
   if(playerInput.value == details.result){
     correctAnswer()
@@ -250,6 +253,8 @@ function checkAnswer() {
     playerInput.value = '';
   }
   newMathEquation()
+  gameValues.score.totalquestion++; 
+  totalQuestion.textContent = `${gameValues.score.totalquestion}`;
 }
 
 /**
@@ -269,7 +274,6 @@ function correctAnswer() {
    //Check if node/acorn-image has been applied
    gameValues.score.collectedAcorn++; 
    acorn instanceof Node ? acronUL.appendChild(acorn) : acronUL ;
-   console.log('correct')
    console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
 };
 
