@@ -1,12 +1,12 @@
 // Starting game values
-let gameValues = {
+let gameValues = { 
   playerName: '',
   remainingMathQuestion:0,
   correct:  0,
   wrong: 0,
   startingValue: 0,
   score : {collectedAcorn: 0},
- }
+ };
 
  // Messsage to be displayed the message bubble in the game page.
 const gameMessage = {
@@ -25,8 +25,8 @@ const gameMessage = {
     wMsg2: 'Take a deep breath and try again.',
     wMsg3: 'Try this question.',
     wMsg4: 'Good try! Give it another go.',
-  }
-}
+  },
+};
 
 /** 
  * Generates random message used to display message for correct and wrong answer
@@ -34,22 +34,22 @@ const gameMessage = {
 function randomMsg(newMessage) {
   const correctMessages = Object.values(newMessage);
   const randomMessageIndex = Math.floor(Math.random() * correctMessages.length);
-  const randMessage = correctMessages[randomMessageIndex]
+  const randMessage = correctMessages[randomMessageIndex];
   nuttyMessage.textContent = randMessage;
   nuttyMessage.setAttribute('aria-label', randMessage)// Applies screen reader to the text that is displayed
-}
+};
 
 
 /** Gets stored gameValues{} stored in local storage */
 function getFromLocalStorage(){
   const storedValues = localStorage.getItem(gameValues);
   return storedValues ? JSON.parse(storedValues) : undefined;
-}
+};
 
 /** Stores gameValues obj to local storage */
 function storeToLocalStorage(){
-  localStorage.setItem(gameValues, JSON.stringify(gameValues))
-}
+  localStorage.setItem(gameValues, JSON.stringify(gameValues));
+};
 
 /**
  * Handles/modifies players name: chapitalizes first letter and store in localstorage.
@@ -64,22 +64,21 @@ function storeToLocalStorage(){
     const modifiedFirstName =  nameToLowerCase.charAt(0).toUpperCase() + nameToLowerCase.slice(1);
     spanFirstName.textContent = ` ${modifiedFirstName}`;
     gameValues.playerName = modifiedFirstName;
-    
   }else{
     throw `No name was entered`;
-  } 
-}
+  }; 
+};
 
 /** Handels challenge input amount and store to localStorage */
 function handleNumberInput(inputType) {
   if(inputType){
     gameValues.remainingMathQuestion = parseInt(inputType.value);// Converts string input to a number.
     gameValues.startingValue = gameValues.remainingMathQuestion;
-    storeToLocalStorage()
+    storeToLocalStorage();
   }else{
     throw `Input not valid! Ensure input value is a number.`
-  }
-}
+  };
+};
 
 
 // Assigns and distructure getFromLocalStorge function and checks truthy value
@@ -91,15 +90,15 @@ function removeElement  (...element) {
   // Loops through ...element parameter using spread operator for mulitple elements
   element.forEach(element => {
     element ? element.style.display = 'none' : null;
-  })
-  }
+  });
+  };
 
 /** Helper function that can take in more than one element using the spread operator to add HTML element*/
 function addElement  (...element) {
   element.forEach(element => {
     element ? element.style.display = 'block' : null;
-  })
-  }
+  });
+  };
 
 /**
  * Navigates to game page and displays and runs handleNumberInput()
@@ -107,9 +106,9 @@ function addElement  (...element) {
 function formSubmit(event) {
   const totalInputValue = document.getElementById('totalInput'); 
   event.preventDefault()
-  console.log(location)
   totalInputValue ? handleNumberInput(totalInputValue) : null;
-  console.log(event)
+
+  // This triggers an event on the target attribute: action which is attached to the form element in index.html and game.html 
   location.href = event.target.action;
   
 };
@@ -121,28 +120,30 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
   const playerInput = document.getElementById('playerInput'); 
   const acronUL = document.getElementById('acornUlList');
-  removeElement(playBtn)
+  removeElement(playBtn);
   resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null;
+  // Ceates an array from the total of collectedAcorns obj. in order to loop through and display saved number of Acorns.
    Array.from({length:gameValues.score.collectedAcorn}).forEach(() => {
-    acronUL.appendChild( createAcorn()) 
-  })
-  console.log(gameValues)
+    acronUL.appendChild(createAcorn()); 
+  });
+
   game();
+
   if(playerInput){
     playerInput.addEventListener('keypress', (event) => {
       if(event.key === 'Enter') {
-        checkAnswer()
-      }
-    })
+        checkAnswer();
+      };
+    });
     return; 
-  }
-  
-  
-  
-})
+  }; 
+});
 
+/**
+ * Renders game values and intial math equation on dom load.
+ */
 function game() {
-  const remainingQuestion = document.getElementById('questionsRemaining')
+  const remainingQuestion = document.getElementById('questionsRemaining');
   const mathQuestion = document.getElementById('mathQuestion');
   const nuttyMessage = document.getElementById('nuttyMessage');
   Object.assign(details,  generateMathProblem());
@@ -152,9 +153,12 @@ function game() {
     remainingQuestion.innerText = gameValues.remainingMathQuestion;
     mathQuestion.textContent = `${details.equation} = `;
     nuttyMessage.innerText = gameMessage.startGameMsg;
-  }
-}
+  };
+};
 
+/**
+ * Displays end game value to the dom when remaining question equal 0.
+ */
 function endGame() {
   const playBtn = document.getElementById('playButton');
   const resetBtn = document.getElementById('resetButton');
@@ -166,15 +170,18 @@ function endGame() {
   if(gameValues.remainingMathQuestion === 0){
     removeElement(checkAnswerBtn);
     addElement(playBtn, totalInputValue );
+    // Display number of acrons in Nutty's message bubble.
     setTimeout(() =>{ gameValues.correct > 0 ?  nuttyMessage.innerText = gameMessage.endGameMsg : nuttyMessage.innerText = 'Sorry better luck next time!';
-   } , 3000)
-    // numberOfAcorns ===  0 ? nuttyMessage.textContent = `Sorry! You collected ${null} acorns this time.`
-    // : nuttyMessage.textContent = `Great job! You collected ${numberOfAcorns} acorns.`   
-    resetBtn ? resetBtn.insertAdjacentElement('beforebegin', playBtn) : null;
-  }
-
+   } , 4000);
+    gameValues.score.collectedAcorn ===  0 ? nuttyMessage.textContent = `Sorry! You collected 0 acorns this time.`
+    : nuttyMessage.textContent = `Great job! You collected ${gameValues.score.collectedAcorn} acorns.`;   
+  };
+  resetBtn ? resetBtn.insertAdjacentElement('beforebegin', playBtn) : null;
 }
 
+/**
+ * Create a new math equation to be rendered after every answered question: correct or wrong.
+ */
 function newMathEquation() {
   const mathQuestion = document.getElementById('mathQuestion');
   const playersAnswer = document.getElementById('playerInput');
@@ -183,11 +190,11 @@ function newMathEquation() {
     playersAnswer.value;
     playersAnswer.focus();
     mathQuestion.textContent = `${details.equation} = `;
-    console.log(details.equation +  ' = ' + details.result)
   }else {
-    endGame()
-  }
-}
+    endGame();
+  };
+};
+
 /** Creates random math equation  */
 function generateMathProblem() {
   const operators = ['+', '-', '*', '/'];
@@ -213,9 +220,11 @@ function generateMathProblem() {
 }
 
 // Obj to handel and update value from generateMathProblem enable to display new math problem.
-const details = { equation: undefined, result: undefined}
+const details = { equation: undefined, result: undefined};
 
-/** Create acorns image and returns a list of acorn images for every right answer input. */
+/** 
+ * Create acorns image and returns an acorn images for every right answer input to the ul in game.html. 
+ * */
 function createAcorn() {
   const acronImage = document.createElement('img');
     acronImage.classList.add('acorn-list-item');
@@ -223,7 +232,6 @@ function createAcorn() {
     acronImage.ariaLabel = "Cartoon acorn";
   const acornListItem  = document.createElement('li');
     acornListItem.appendChild(acronImage);
-    
     
   return acornListItem;
 }
