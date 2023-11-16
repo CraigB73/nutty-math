@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
   const playerInput = document.getElementById('playerInput'); 
   const acronUL = document.getElementById('acornUlList');
-  
+   document.getElementById('gameMessage').style.display =  'none';
   removeElement(playBtn);
   resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null;
   // Ceates an array from the total of collectedAcorns obj. in order to loop through and display saved number of Acorns.
@@ -149,10 +149,9 @@ function game() {
   const mathQuestion = document.getElementById('mathQuestion');
   const nuttyMessage = document.getElementById('nuttyMessage');
   const playersName = document.getElementById('playersName');
-  document.getElementById('gameMessage').style.display =  'none';
   Object.assign(details,  generateMathProblem());
 
-  if(remainingQuestion || mathQuestion || nuttyMessage || totalQuestion){
+  if(remainingQuestion || mathQuestion || nuttyMessage || totalQuestion ){
     document.getElementById('totalInput').style.display = 'none';
     remainingQuestion.innerText = gameValues.remainingMathQuestion;
     totalQuestion.innerText = gameValues.score.totalquestion;
@@ -161,7 +160,6 @@ function game() {
     setTimeout(() => {
         nuttyMessage.innerText = gameMessage.startGameMsg;
     }, 3000)
-  
   };
 };
 
@@ -260,7 +258,7 @@ function checkAnswer() {
     wrongAnswer()
     playerInput.value = '';
   }
-  
+
   newMathEquation()
   gameValues.score.totalquestion++; 
   totalQuestion.textContent = `${gameValues.score.totalquestion}`;
