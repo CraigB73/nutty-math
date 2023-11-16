@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
   const playerInput = document.getElementById('playerInput'); 
   const acronUL = document.getElementById('acornUlList');
+  
   removeElement(playBtn);
   resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null;
   // Ceates an array from the total of collectedAcorns obj. in order to loop through and display saved number of Acorns.
@@ -147,6 +148,8 @@ function game() {
   const totalQuestion =  document.getElementById('totalQuestion')
   const mathQuestion = document.getElementById('mathQuestion');
   const nuttyMessage = document.getElementById('nuttyMessage');
+  const playersName = document.getElementById('playersName');
+  document.getElementById('gameMessage').style.display =  'none';
   Object.assign(details,  generateMathProblem());
 
   if(remainingQuestion || mathQuestion || nuttyMessage || totalQuestion){
@@ -154,9 +157,14 @@ function game() {
     remainingQuestion.innerText = gameValues.remainingMathQuestion;
     totalQuestion.innerText = gameValues.score.totalquestion;
     mathQuestion.textContent = `${details.equation} = `;
-    nuttyMessage.innerText = gameMessage.startGameMsg;
+    playersName.textContent = `${' '}${gameValues.playerName}!`;
+    setTimeout(() => {
+        nuttyMessage.innerText = gameMessage.startGameMsg;
+    }, 3000)
+  
   };
 };
+
 
 /**
  * Displays end game value to the dom when remaining question equal 0.
@@ -252,6 +260,7 @@ function checkAnswer() {
     wrongAnswer()
     playerInput.value = '';
   }
+  
   newMathEquation()
   gameValues.score.totalquestion++; 
   totalQuestion.textContent = `${gameValues.score.totalquestion}`;
