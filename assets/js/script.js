@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
    Array.from({length:gameValues.score.collectedAcorn}).forEach(() => {
     acronUL.appendChild(createAcorn()); 
   });
-  console.log(gameValues)
+  
   game();
   
   if(playerInput){
@@ -196,7 +196,7 @@ function endGame() {
       updateAraiaLabel(nuttyMessage, 'Sorry better luck next time!');
     }
    } , 3000);
-   
+
    // Displays message if no math question were answered correctly;
     if(gameValues.score.collectedAcorn ===  0){
       nuttyMessage.textContent = 'Sorry! You collected 0 acorns this time.';

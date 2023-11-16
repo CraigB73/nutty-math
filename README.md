@@ -22,25 +22,28 @@
    12. [Credits and Acknowledgements](#credits-and-acknowledgements)
 
 ## Features
-1. Homepage
- ![Home ](<Screenshot 2023-11-12 at 20.11.01.png>)
-Home page -  Enter your name and number of math problems you want to chanllege yourself. When you type your name it is displayed in the instruction section of the home page. Within the instruction section you will also find the object of the game.
+**Homepage -** Enter your name and number of math problems you want to chanllege yourself. When you type your name it is displayed in the instruction section of the home page. Within the instruction section you will also find the object of the game.
 Press the play button which navigate you to the game page
 
-2. Gamepage
-![Alt text](<Screenshot 2023-11-12 at 20.16.27.png>)
-The gamepage is where you start you challenge and bulid on you math skills. On the game page you have a scorebord and image of Nutty with a message bubble that provide encougagement as you play the game. Below the image and scorebord you math equation will be displayed. Check you answer by pressing the , "Check Answer" button. If correct player recieves an acorn and a new equation. 
-![Alt text](<Screenshot 2023-11-12 at 20.24.39.png>)
-Once you completed you challenge you will be asked to play again. At anytime you can press the "Home" button whick will take you back to the "Homepage" and reset the game.
-1. Footer
-![Alt text](<Screenshot 2023-11-12 at 21.17.19.png>)
- Mock social links as placeholders to be created for players access and share their success.
+<img src="Screenshot 2023-11-12 at 20.11.01.png" alt="Screenshot" width="300" height="300">
 
-- Social Media:
-  - [Facebook](https://www.facebook.com)
-  - [X](https://www.x.com)
-  - [Instagram](https://www.instagram.com)
-  - [Messenger](https://www.messenger.com)
+**Gamepage -** The gamepage is where you start you challenge and bulid on you math skills. On the game page you have a scorebord and image of Nutty with a message bubble that provide encougagement as you play the game. Below the image and scorebord you math equation will be displayed. Check you answer by pressing the , "Check Answer" button. If correct player recieves an acor n and a new equation.
+
+<img src="Screenshot 2023-11-16 at 10.20.17.png" alt="Screenshot" width="300" height="200"> 
+
+Once you completed you challenge you will be asked to play again. At anytime you can press the "Home" button whick will take you back to the "Homepage" and reset the game.
+
+<img src="Screenshot 2023-11-12 at 20.24.39.png" alt="Screenshot" width="400" height="100">
+
+**Footer:** Mock social links as placeholders to be created for players access and share their success.
+
+<img src="Screenshot 2023-11-12 at 21.17.19.png" alt="Screenshot" width="400" height="75">
+
+**Social Media Links:**
+- [Facebook](https://www.facebook.com)
+- [X](https://www.x.com)
+- [Instagram](https://www.instagram.com)
+- [Messenger](https://www.messenger.com)
 
 ## Design and Color Reference
  Design link created in: [Figma](https://www.figma.com/file/uzQhUBLFXZnp77fvHifUTR/nutty_math?type=design&node-id=1%3A94&mode=design&t=ADPiRRybJDRygtgZ-1)
@@ -74,10 +77,11 @@ Once you completed you challenge you will be asked to play again. At anytime you
 - Ensured that all social navigation icons work and link to a new tap.
 
 ## Validation
-- PageSpeed Insight: www.pagespeed.web.dev
-  
+- PageSpeed Insight: https://pagespeed.web.dev/analysis/https-craigb73-github-io-nutty-math/ic1070tu0t?form_factor=desktop
+![Screenshot image from PageSpeed Insight](<Screenshot 2023-11-16 at 09.56.07.png>)
 - W3C Validator for CSS
-![W3C css validation](<Screenshot 2023-11-16 at 00.45.48.png>)
+![Screenshot image from W3C css validation](<Screenshot 2023-11-16 at 00.45.48.png>)
+
 ## Bugs
 - ChatGBT(https://chat.openai.com/): 
   ```
@@ -91,7 +95,7 @@ Once you completed you challenge you will be asked to play again. At anytime you
 
 ## Deployment 
 - Deployment was performed using GitHub pages.
-- Website link: https://craigb73.github.io/wave-guard/
+- Website link:  https://craigb73.github.io/nutty-math/
 
 ## Media/Images
 Gamepage Squirrel Image:  https://www.midjourney.com/home
