@@ -36,7 +36,7 @@ function randomMsg(newMessage) {
   const randomMessageIndex = Math.floor(Math.random() * correctMessages.length);
   const randMessage = correctMessages[randomMessageIndex];
   nuttyMessage.textContent = randMessage;
-  nuttyMessage.setAttribute('aria-label', randMessage)// Applies screen reader to the text that is displayed
+  updateAraiaLabel(nuttyMessage, randMessage )// Applies screen reader to the text that is displayed.
 };
 
 
@@ -100,6 +100,11 @@ function addElement  (...element) {
   });
   };
 
+ /** Helper function to apply aria-label for screen reader for dynamic message display to dom */ 
+function updateAraiaLabel(element, message) {
+  element.setAttribute('aria-label', message)
+};
+
 /**
  * Navigates to game page and displays and runs handleNumberInput()
  * */  
@@ -110,7 +115,6 @@ function formSubmit(event) {
 
   // This triggers an event on the target attribute: action which is attached to the form element in index.html and game.html 
   location.href = event.target.action;
-  
 };
 
 /* Loads game values and intial math question as well as listens for game events: checkAswer,  */
@@ -155,10 +159,14 @@ function game() {
     document.getElementById('totalInput').style.display = 'none';
     remainingQuestion.innerText = gameValues.remainingMathQuestion;
     totalQuestion.innerText = gameValues.score.totalquestion;
+    updateAraiaLabel(totalQuestion, `${gameValues.score.totalquestion}`);
     mathQuestion.textContent = `${details.equation} = `;
+    updateAraiaLabel(mathQuestion, `${details.equation} = `);
     playersName.textContent = `${' '}${gameValues.playerName}!`;
+    updateAraiaLabel(playersName, `${gameValues.playerName}!`);
     setTimeout(() => {
         nuttyMessage.innerText = gameMessage.startGameMsg;
+        updateAraiaLabel(mathQuestion, `${gameMessage.startGameMsg}`);
     }, 3000)
   };
 };
@@ -179,10 +187,26 @@ function endGame() {
     removeElement(checkAnswerBtn);
     addElement(playBtn, totalInputValue, message);
     // Display number of acrons in Nutty's message bubble.
-    setTimeout(() =>{ gameValues.correct > 0 ?  nuttyMessage.innerText = gameMessage.endGameMsg : nuttyMessage.innerText = 'Sorry better luck next time!';
-   } , 4000);
-    gameValues.score.collectedAcorn ===  0 ? nuttyMessage.textContent = `Sorry! You collected 0 acorns this time.`
-    : nuttyMessage.textContent = `Great job! You collected ${gameValues.score.collectedAcorn} acorns.`;   
+    setTimeout(() =>{ 
+      if(gameValues.correct > 0) { 
+       nuttyMessage.innerText = gameMessage.endGameMsg
+      updateAraiaLabel(mathQuestion, `${gameMessage.startGameMsg}`);
+    }else {
+      nuttyMessage.innerText = 'Sorry better luck next time!';
+      updateAraiaLabel(nuttyMessage, 'Sorry better luck next time!');
+    }
+   } , 3000);
+   
+   // Displays message if no math question were answered correctly;
+    if(gameValues.score.collectedAcorn ===  0){
+      nuttyMessage.textContent = 'Sorry! You collected 0 acorns this time.';
+      updateAraiaLabel(nuttyMessage, 'Sorry! You collected 0 acorns this time.');
+    }else {
+      nuttyMessage.textContent = `Great job! You collected ${gameValues.score.collectedAcorn} acorns.`;
+      updateAraiaLabel(nuttyMessage, `Great job! You collected ${gameValues.score.collectedAcorn} acorns.`);
+       
+    }
+ 
   };
   resetBtn ? resetBtn.insertAdjacentElement('beforebegin', playBtn) : null;
 }
@@ -198,6 +222,7 @@ function newMathEquation() {
     playersAnswer.value;
     playersAnswer.focus();
     mathQuestion.textContent = `${details.equation} = `;
+    updateAraiaLabel(mathQuestion, `${details.equation} = `);
   }else {
     endGame();
   };
@@ -250,7 +275,9 @@ function createAcorn() {
 function checkAnswer() {
   const playerInput = document.getElementById('playerInput');
   const totalQuestion =  document.getElementById('totalQuestion');
+  const remainingQuestion = document.getElementById('questionsRemaining');
   nuttyMessage.innerText = `Enter a number or press "Enter"`
+  updateAraiaLabel(nuttyMessage, `Enter a number or press "Enter"`);
   if(playerInput.value == details.result){
     correctAnswer()
     playerInput.value = '';
@@ -258,11 +285,13 @@ function checkAnswer() {
     wrongAnswer()
     playerInput.value = '';
   }
-
   newMathEquation()
   gameValues.score.totalquestion++; 
   totalQuestion.textContent = `${gameValues.score.totalquestion}`;
+  updateAraiaLabel(totalQuestion, `${gameValues.score.totalquestion}`);
+  updateAraiaLabel(remainingQuestion, `${gameValues.remainingMathQuestion}`);
 }
+
 
 /**
  * Evaluates if player answer input is truthy then
@@ -273,15 +302,16 @@ function correctAnswer() {
   const acorn = createAcorn();
   const correctMsg = gameMessage.corrAnsMsg;
   const acronUL = document.getElementById('acornUlList');
+  const remainingQuestion = document.getElementById('questionsRemaining');
     randomMsg(correctMsg);
     gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
     gameValues.correct = gameValues.correct + 1;
-    document.getElementById('questionsRemaining').textContent = gameValues.remainingMathQuestion;
+    remainingQuestion.textContent = gameValues.remainingMathQuestion;
+    updateAraiaLabel(remainingQuestion, `${gameValues.remainingMathQuestion}`);
 
    //Check if node/acorn-image has been applied
    gameValues.score.collectedAcorn++; 
    acorn instanceof Node ? acronUL.appendChild(acorn) : acronUL ;
-   console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
 };
 
 /**
@@ -292,13 +322,12 @@ function wrongAnswer() {
   const wrongMsg = gameMessage.wrongAnsMsg; 
   randomMsg(wrongMsg);
   gameValues.remainingMathQuestion = gameValues.remainingMathQuestion - 1;
-  gameValues.wrong = gameValues.wrong+ 1;
+  gameValues.wrong = gameValues.wrong + 1;
   document.getElementById('questionsRemaining').textContent = gameValues.remainingMathQuestion;
-  console.log( 'totalQuest', gameValues.remainingMathQuestion, gameValues)
 };
 
 /** Rest all starting values and returns to home page */
 function reset() {
   location.href = 'index.html';
-  localStorage.clear()
+  localStorage.clear();
 }
