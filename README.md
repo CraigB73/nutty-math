@@ -76,8 +76,8 @@ Once you completed you challenge you will be asked to play again. At anytime you
 ## Validation
 - PageSpeed Insight: www.pagespeed.web.dev
   
-- W3C Validator for HTML and CSS
-
+- W3C Validator for CSS
+![W3C css validation](<Screenshot 2023-11-16 at 00.45.48.png>)
 ## Bugs
 - ChatGBT(https://chat.openai.com/): 
   ```
