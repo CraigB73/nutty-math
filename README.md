@@ -5,7 +5,9 @@
 
 ## Description 
 
-*Nutty's Math Adventure* – Join Nutty, the irresistibly cute squirrel, in a quest to gather acorns throug engauging math-solving fun. Exercise your brain cells while helping Nutty gear up for the chilly winter ahead. Solve random math questions and watch as Nutty's stash grows. It's not just about numbers; it's about the joy of learning and the excitement of aiding Nutty in this adorable adventure. Let the acorn-collecting journey! <a>https://craigb73.github.io/nutty-math/</a>
+*Nutty's Math Adventure* – Join Nutty, the irresistibly cute squirrel, in a quest to gather acorns throug engauging math-solving fun. Exercise your brain cells while helping Nutty gear up for the chilly winter ahead. Solve random math questions and watch as Nutty's stash grows. It's not just about numbers; it's about the joy of learning and the excitement of aiding Nutty in this adorable adventure. Let the acorn-collecting journey! 
+
+website: https://craigb73.github.io/nutty-math/
 
 ## Table of Content 
 
