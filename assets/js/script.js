@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const checkAnswerBtn = document.getElementById('checkAnswerButton');
   const playerInput = document.getElementById('playerInput'); 
   const acronUL = document.getElementById('acornUlList');
-   document.getElementById('gameMessage').style.display =  'none';
+  document.getElementById('gameMessage').style.display =  'none';
   removeElement(playBtn);
   resetBtn ? resetBtn.insertAdjacentElement('beforebegin', checkAnswerBtn) : null;
   // Ceates an array from the total of collectedAcorns obj. in order to loop through and display saved number of Acorns.
@@ -174,10 +174,10 @@ function endGame() {
   const message = document.getElementById('gameMessage');
   const totalInputValue = document.getElementById('totalInput');
   removeElement(playerInput, mathQuestion);
-  message.innerText = 'Keep gather! Choose your next challange';
+  message.innerText = `Keep gather ${gameValues.playerName}! Choose another challange`;
   if(gameValues.remainingMathQuestion === 0){
     removeElement(checkAnswerBtn);
-    addElement(playBtn, totalInputValue );
+    addElement(playBtn, totalInputValue, message);
     // Display number of acrons in Nutty's message bubble.
     setTimeout(() =>{ gameValues.correct > 0 ?  nuttyMessage.innerText = gameMessage.endGameMsg : nuttyMessage.innerText = 'Sorry better luck next time!';
    } , 4000);
